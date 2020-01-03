@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C14BCA2E23BFDFB300A4644C /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14BCA2D23BFDFB300A4644C /* UIImageViewExtension.swift */; };
+		C14BCA3023BFE07F00A4644C /* AmiiboTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14BCA2F23BFE07F00A4644C /* AmiiboTableViewCell.swift */; };
 		C1C3DB9123BFC49D00BAB11C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C3DB9023BFC49D00BAB11C /* AppDelegate.swift */; };
 		C1C3DB9323BFC49D00BAB11C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C3DB9223BFC49D00BAB11C /* SceneDelegate.swift */; };
 		C1C3DB9523BFC49D00BAB11C /* AmiiboTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C3DB9423BFC49D00BAB11C /* AmiiboTableViewController.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C14BCA2D23BFDFB300A4644C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		C14BCA2F23BFE07F00A4644C /* AmiiboTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmiiboTableViewCell.swift; sourceTree = "<group>"; };
 		C1C3DB8D23BFC49D00BAB11C /* AmiiboViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmiiboViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C3DB9023BFC49D00BAB11C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C3DB9223BFC49D00BAB11C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +91,9 @@
 			children = (
 				C1C3DB9023BFC49D00BAB11C /* AppDelegate.swift */,
 				C1C3DB9223BFC49D00BAB11C /* SceneDelegate.swift */,
+				C14BCA2D23BFDFB300A4644C /* UIImageViewExtension.swift */,
 				C1C3DB9423BFC49D00BAB11C /* AmiiboTableViewController.swift */,
+				C14BCA2F23BFE07F00A4644C /* AmiiboTableViewCell.swift */,
 				C1C3DB9623BFC49D00BAB11C /* Main.storyboard */,
 				C1C3DBB423BFC50900BAB11C /* AmiiboAPI.swift */,
 				C1C3DBB623BFC65800BAB11C /* AmiiboModel.swift */,
@@ -209,7 +215,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14BCA3023BFE07F00A4644C /* AmiiboTableViewCell.swift in Sources */,
 				C1C3DBB323BFC4CE00BAB11C /* NetworkHelper.swift in Sources */,
+				C14BCA2E23BFDFB300A4644C /* UIImageViewExtension.swift in Sources */,
 				C1C3DBB523BFC50900BAB11C /* AmiiboAPI.swift in Sources */,
 				C1C3DBB723BFC65800BAB11C /* AmiiboModel.swift in Sources */,
 				C1C3DB9523BFC49D00BAB11C /* AmiiboTableViewController.swift in Sources */,

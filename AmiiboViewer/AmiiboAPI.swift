@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct amiiboAPI {
+struct AmiiboAPI {
     static func getAllAmiibos(completion: @escaping (Result<[AmiiboElement], AppError>) -> ()) {
         let amiiboEndpoint = "https://www.amiiboapi.com/api/amiibo/"
         guard let url = URL(string: amiiboEndpoint) else {

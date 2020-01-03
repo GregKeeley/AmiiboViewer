@@ -27,7 +27,7 @@ class AmiiboTableViewController: UIViewController {
         loadAmiibos()
     }
     func loadAmiibos() {
-        amiiboAPI.getAllAmiibos { [weak self] result in
+        AmiiboAPI.getAllAmiibos { [weak self] result in
             switch result {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
@@ -47,10 +47,11 @@ extension AmiiboTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "amiiboCell", for: indexPath)
+        guard let cell = tableview.dequeueReusableCell(withIdentifier: "amiiboCell", for: indexPath) as? AmiiboTableViewCell else {
+            fatalError("")
+        }
         let amiiboInfo = amiibos[indexPath.row]
-        cell.textLabel?.text = amiiboInfo.name
-        cell.detailTextLabel?.text = amiiboInfo.release.na?.description
+        cell.configureCell(amiibo: amiiboInfo)
         return cell
     }
 }
