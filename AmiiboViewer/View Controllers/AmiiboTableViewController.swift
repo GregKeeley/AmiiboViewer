@@ -36,7 +36,14 @@ class AmiiboTableViewController: UIViewController {
             }
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       guard let amiiboDetailVC = segue.destination as? AmiiboDetailViewController,
+        let indexPath = tableview.indexPathForSelectedRow else {
+            fatalError("failed to prepare for segue properly")
+        }
+        let amiibo = amiibos[indexPath.row]
+        amiiboDetailVC.amiibo = amiibo
+    }
 }
 
 extension AmiiboTableViewController: UITableViewDataSource {
