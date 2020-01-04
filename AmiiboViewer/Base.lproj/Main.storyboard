@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RKR-0s-xVd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R3v-jz-Mej">
-                                <rect key="frame" x="0.0" y="100" width="414" height="796"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="amiiboCell" textLabel="jha-7Y-pCx" detailTextLabel="xFM-tI-0ga" rowHeight="167" style="IBUITableViewCellStyleSubtitle" id="6KS-Zd-n9Y" customClass="AmiiboTableViewCell" customModule="AmiiboViewer" customModuleProvider="target">
@@ -63,7 +64,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="D2a-Uz-qx2">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -80,6 +81,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="17e-hh-zGb">
+                        <barButtonItem key="rightBarButtonItem" title="Alternate View" id="qfO-gv-lUY">
+                            <connections>
+                                <segue destination="Ywc-Xc-3i7" kind="show" identifier="collectionViewSegue" id="IrE-DX-Y6a"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="D2a-Uz-qx2" id="kuM-Zk-N1g"/>
                         <outlet property="tableview" destination="R3v-jz-Mej" id="vZr-Sv-gv6"/>
@@ -87,18 +95,90 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="113.83928571428571"/>
+        </scene>
+        <!--Amiibo Collection View Controller-->
+        <scene sceneID="sn0-y2-sTo">
+            <objects>
+                <viewController id="Ywc-Xc-3i7" customClass="AmiiboCollectionViewController" customModule="AmiiboViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ybj-5M-tyt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VhN-nr-a9P">
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZwJ-gg-GSG">
+                                    <size key="itemSize" width="122" height="176"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="amiiboCollectionCell" id="kgu-9g-48F" customClass="AmiiboCollectionViewCell" customModule="AmiiboViewer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="122" height="176"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Khy-ld-Og7">
+                                            <rect key="frame" x="0.0" y="0.0" width="122" height="176"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pR9-1V-Lnu">
+                                                    <rect key="frame" x="8" y="8" width="106" height="132"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amiibo Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UW-gU-kK6">
+                                                    <rect key="frame" x="8" y="147" width="106" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="8UW-gU-kK6" secondAttribute="trailing" constant="8" id="48y-IC-d32"/>
+                                                <constraint firstAttribute="bottom" secondItem="8UW-gU-kK6" secondAttribute="bottom" constant="8" id="6g0-l8-lad"/>
+                                                <constraint firstAttribute="trailing" secondItem="pR9-1V-Lnu" secondAttribute="trailing" constant="8" id="77v-Rp-Z0z"/>
+                                                <constraint firstItem="8UW-gU-kK6" firstAttribute="leading" secondItem="Khy-ld-Og7" secondAttribute="leading" constant="8" id="7AW-UP-6vG"/>
+                                                <constraint firstItem="pR9-1V-Lnu" firstAttribute="leading" secondItem="Khy-ld-Og7" secondAttribute="leading" constant="8" id="G9W-uA-I29"/>
+                                                <constraint firstItem="pR9-1V-Lnu" firstAttribute="top" secondItem="Khy-ld-Og7" secondAttribute="top" constant="8" id="t7D-Oq-zZ0"/>
+                                                <constraint firstItem="pR9-1V-Lnu" firstAttribute="height" secondItem="Khy-ld-Og7" secondAttribute="height" multiplier="0.75" id="v6Q-xN-MYV"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="122" height="176"/>
+                                        <connections>
+                                            <outlet property="amiiboImageView" destination="pR9-1V-Lnu" id="LeV-l4-Ofs"/>
+                                            <outlet property="nameLabel" destination="8UW-gU-kK6" id="sN8-S1-hLA"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="X6m-rr-6bA" firstAttribute="trailing" secondItem="VhN-nr-a9P" secondAttribute="trailing" constant="20" id="1FN-C3-fZN"/>
+                            <constraint firstItem="VhN-nr-a9P" firstAttribute="leading" secondItem="X6m-rr-6bA" secondAttribute="leading" constant="20" id="30x-oW-8FW"/>
+                            <constraint firstItem="VhN-nr-a9P" firstAttribute="top" secondItem="ybj-5M-tyt" secondAttribute="top" constant="44" id="ZsJ-ke-A0X"/>
+                            <constraint firstItem="VhN-nr-a9P" firstAttribute="bottom" secondItem="X6m-rr-6bA" secondAttribute="bottom" id="pPb-6Z-akQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X6m-rr-6bA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cev-oy-xce"/>
+                    <connections>
+                        <outlet property="amiiboCollectionView" destination="VhN-nr-a9P" id="JYK-b1-3ai"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDr-3c-pp8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="801.5625"/>
         </scene>
         <!--Amiibo Detail View Controller-->
         <scene sceneID="5xI-Mp-EGP">
             <objects>
                 <viewController id="5bo-RR-FFy" customClass="AmiiboDetailViewController" customModule="AmiiboViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9XN-Ni-mtf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fc-ay-yGV">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="379"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="403"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amiibo Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5I-xC-jg1">
                                 <rect key="frame" x="20" y="434" width="103" height="21"/>
@@ -157,7 +237,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OY6-cU-Kpw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921.73913043478262" y="113.83928571428571"/>
+            <point key="canvasLocation" x="1831.8840579710147" y="113.83928571428571"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lyV-o1-ai0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RKR-0s-xVd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t1U-dx-vZ2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lJb-wn-CCR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uOE-rd-rLK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </scene>
     </scenes>
 </document>
