@@ -36,7 +36,16 @@ class AmiiboCollectionViewController: UIViewController {
             }
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let amiiboDetailVC = segue.destination as? AmiiboDetailViewController,
+            let indexPath = amiiboCollectionView.indexPathsForSelectedItems?.first else {
+                fatalError("Failed to prepare for segue")
+        }
+        amiiboDetailVC.amiibo = amiibos[indexPath.row]
+    }
 }
+
+
 
 extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -49,8 +58,12 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
         return cell!
     }
     
-    
+   
+}
+extension AmiiboCollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 150.0, height: 150.0)
+    }
 }
 extension AmiiboCollectionViewController: UICollectionViewDelegate {
-    
 }
