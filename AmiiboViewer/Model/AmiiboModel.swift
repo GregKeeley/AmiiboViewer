@@ -23,14 +23,10 @@ struct AmiiboInfo: Codable {
     static func sortByGame(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
         let allGames = getGameSeries(amiibos: allAmiibos)
         var amiibosByGame = Array(repeating: [AmiiboElement](), count: allGames.count)
-        print(allAmiibos.count)
         let sortedAmiibos = allAmiibos.sorted { $0.gameSeries < $1.gameSeries }
-        print(amiibosByGame.count)
-        print(amiibosByGame)
         var currentIndex = 0
         var currentGame = sortedAmiibos.first?.gameSeries
-        print(currentGame)
-        if currentIndex <= amiibosByGame.count {
+        if currentIndex < amiibosByGame.count {
             for amiiboElement in sortedAmiibos {
                 if amiiboElement.gameSeries == currentGame {
                     amiibosByGame[currentIndex].append(amiiboElement)
@@ -43,6 +39,51 @@ struct AmiiboInfo: Codable {
             }
         }
         return amiibosByGame
+    }
+    static func getAmiiboYears(amiibos: [AmiiboElement]) -> [String] {
+            var uniqueYears = [String]()
+            for amiibo in amiibos {
+                
+                let releaseYear = amiibo.release.na?.components(separatedBy: "-")
+                if !uniqueYears.contains(String(releaseYear?[0] ?? "0000")) {
+                    uniqueYears.append(releaseYear?[0] ?? "0000")
+                }
+            }
+            return uniqueYears
+        }
+    static func sortByYear(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
+        let allYears = getAmiiboYears(amiibos: allAmiibos).sorted { $0 > $1 }
+        print(allYears)
+        var amiibosByYear = Array(repeating: [AmiiboElement](), count: allYears.count)
+        var currentIndex = 0
+        let sortedAmiibos = allAmiibos
+            .filter { $0.release.na != nil }
+            .sorted { $0.release.na! > $1.release.na! }
+        var currentYear = sortedAmiibos.first?.release.na?.components(separatedBy: "-")
+        for amiiboElement in allAmiibos {
+            if amiiboElement.release.na == nil {
+                amiibosByYear[6].append(amiiboElement)
+                dump(amiibosByYear[6].count)
+            }
+        }
+        if currentIndex < amiibosByYear.count {
+            for amiiboElement in sortedAmiibos {
+                
+                let amiiboYear = amiiboElement.release.na?.components(separatedBy: "-")
+                if amiiboYear?[0] == currentYear?[0] {
+                    amiibosByYear[currentIndex].append(amiiboElement)
+                } else {
+                    currentIndex += 1
+                    print(currentIndex)
+                    currentYear = amiiboYear
+                    amiibosByYear[currentIndex].append(amiiboElement)
+                }
+            }
+        }
+        for year in amiibosByYear {
+            print(year)
+        }
+        return amiibosByYear
     }
 }
 struct AmiiboElement: Codable {

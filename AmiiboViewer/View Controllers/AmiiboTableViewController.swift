@@ -33,7 +33,8 @@ class AmiiboTableViewController: UIViewController {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
-                let sortedByGameAmiibos = AmiiboInfo.sortByGame(allAmiibos: data)
+                //let sortedByGameAmiibos = AmiiboInfo.sortByGame(allAmiibos: data)
+                let sortedByGameAmiibos = AmiiboInfo.sortByYear(allAmiibos: data)
                 self?.amiibos = sortedByGameAmiibos
             }
         }
@@ -64,12 +65,9 @@ extension AmiiboTableViewController: UITableViewDataSource {
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return amiibos.count
-        
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         return ("\(amiibos[section].first?.gameSeries ?? "ERROR") : \(amiibos[section].count)")
     }
     

@@ -22,6 +22,7 @@ class SortByViewController: UIViewController {
     
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         setSortMethod = sender.tag
+       
         }
        // dismiss(animated: true)
 //    }
