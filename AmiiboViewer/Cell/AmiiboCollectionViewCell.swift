@@ -14,6 +14,7 @@ class AmiiboCollectionViewCell: UICollectionViewCell {
     
     func congifureCell(for amiibo: AmiiboElement) {
 //        nameLabel.text = amiibo.name
+        
         amiiboImageView.getImage(with: amiibo.image) { [weak self] (results) in
             switch results {
             case .failure(let appError):

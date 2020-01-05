@@ -13,7 +13,7 @@ class AmiiboTableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var amiibos = [AmiiboElement]() {
+    var amiibos = [[AmiiboElement]]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableview.reloadData()
@@ -23,6 +23,7 @@ class AmiiboTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableview.delegate = self
         tableview.dataSource = self
         loadAmiibos()
     }
@@ -32,7 +33,8 @@ class AmiiboTableViewController: UIViewController {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
-                self?.amiibos = data
+                let sortedByGameAmiibos = AmiiboInfo.sortByGame(allAmiibos: data)
+                self?.amiibos = sortedByGameAmiibos
             }
         }
     }
@@ -43,25 +45,38 @@ class AmiiboTableViewController: UIViewController {
             fatalError("failed to prepare for segue properly")
             }
             let amiibo = amiibos[indexPath.row]
-            amiiboDetailVC.amiibo = amiibo
+            amiiboDetailVC.amiibo = amiibo[indexPath.row]
         } else {
            
         }
     }
 }
 extension AmiiboTableViewController: UITableViewDataSource {
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        amiibos.count
+        amiibos[section].count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableview.dequeueReusableCell(withIdentifier: "amiiboCell", for: indexPath) as? AmiiboTableViewCell else {
             fatalError("")
         }
-        let amiiboInfo = amiibos[indexPath.row]
-        cell.configureCell(amiibo: amiiboInfo)
+        let amiiboInfo = amiibos[indexPath.section]
+        cell.configureCell(amiibo: amiiboInfo[indexPath.row])
         return cell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return amiibos.count
+        
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return ("\(amiibos[section].first?.gameSeries ?? "ERROR") : \(amiibos[section].count)")
+    }
+    
+}
+
+extension AmiiboTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
     }
 }
