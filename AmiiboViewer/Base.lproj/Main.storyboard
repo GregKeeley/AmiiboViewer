@@ -105,8 +105,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VhN-nr-a9P">
-                                <rect key="frame" x="0.0" y="132" width="414" height="764"/>
-                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="20" y="133" width="374" height="763"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="A7f-ML-NaI">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -132,6 +132,7 @@
                                                 <constraint firstItem="pR9-1V-Lnu" firstAttribute="top" secondItem="Khy-ld-Og7" secondAttribute="top" constant="8" id="foF-kL-iBa"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="122" height="176"/>
                                         <connections>
                                             <outlet property="amiiboImageView" destination="pR9-1V-Lnu" id="LeV-l4-Ofs"/>
@@ -141,17 +142,17 @@
                                 </cells>
                             </collectionView>
                             <searchBar contentMode="redraw" placeholder="Search By Name" translatesAutoresizingMaskIntoConstraints="NO" id="paC-rf-ZVk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="45"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="X6m-rr-6bA" firstAttribute="trailing" secondItem="VhN-nr-a9P" secondAttribute="trailing" id="1FN-C3-fZN"/>
-                            <constraint firstItem="VhN-nr-a9P" firstAttribute="leading" secondItem="X6m-rr-6bA" secondAttribute="leading" id="30x-oW-8FW"/>
+                            <constraint firstItem="X6m-rr-6bA" firstAttribute="trailing" secondItem="VhN-nr-a9P" secondAttribute="trailing" constant="20" id="1FN-C3-fZN"/>
+                            <constraint firstItem="VhN-nr-a9P" firstAttribute="leading" secondItem="X6m-rr-6bA" secondAttribute="leading" constant="20" id="30x-oW-8FW"/>
                             <constraint firstItem="VhN-nr-a9P" firstAttribute="top" secondItem="paC-rf-ZVk" secondAttribute="bottom" id="F3W-Gh-kH8"/>
                             <constraint firstItem="paC-rf-ZVk" firstAttribute="trailing" secondItem="X6m-rr-6bA" secondAttribute="trailing" id="UGc-jg-W6I"/>
-                            <constraint firstItem="VhN-nr-a9P" firstAttribute="top" secondItem="ybj-5M-tyt" secondAttribute="top" constant="132" id="ZsJ-ke-A0X"/>
+                            <constraint firstItem="VhN-nr-a9P" firstAttribute="top" secondItem="ybj-5M-tyt" secondAttribute="top" constant="133" id="ZsJ-ke-A0X"/>
                             <constraint firstItem="paC-rf-ZVk" firstAttribute="leading" secondItem="X6m-rr-6bA" secondAttribute="leading" id="bcD-nU-jIl"/>
                             <constraint firstItem="paC-rf-ZVk" firstAttribute="top" secondItem="X6m-rr-6bA" secondAttribute="top" id="jRN-ux-Dy1"/>
                             <constraint firstItem="VhN-nr-a9P" firstAttribute="bottom" secondItem="X6m-rr-6bA" secondAttribute="bottom" constant="34" id="pPb-6Z-akQ"/>
@@ -159,15 +160,15 @@
                         <viewLayoutGuide key="safeArea" id="X6m-rr-6bA"/>
                     </view>
                     <navigationItem key="navigationItem" id="cev-oy-xce">
-                        <barButtonItem key="leftBarButtonItem" title="Sort By" id="SWW-bh-jOy">
+                        <barButtonItem key="leftBarButtonItem" title="Table View" id="Pz3-GE-BJg">
                             <connections>
-                                <segue destination="E15-18-tDq" kind="presentation" identifier="collectionToFilter" id="JZX-mG-9gg"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="collectionToTableViewSegue" id="ryJ-Lb-AG3"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Table View" id="Pz3-GE-BJg">
+                            <barButtonItem title="Sort By" id="SWW-bh-jOy">
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="collectionToTableViewSegue" id="ryJ-Lb-AG3"/>
+                                    <segue destination="E15-18-tDq" kind="presentation" identifier="" id="JZX-mG-9gg"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Cancel" id="Kr3-UC-ttZ">
@@ -202,11 +203,10 @@
                                     <constraint firstAttribute="height" constant="120" id="NC1-5A-UXF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <state key="normal" title="YEAR"/>
+                                <state key="normal" title="GAME"/>
                                 <connections>
-                                    <action selector="sortButtonPressed:" destination="HaS-By-3BZ" eventType="touchUpInside" id="VVp-h5-rhF"/>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="z7K-xu-p3c"/>
-                                    <action selector="unwindToCollection:" destination="E15-18-tDq" eventType="touchUpInside" id="Lhx-Bl-rNX"/>
+                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="smq-Xl-bTe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-uB-Pda">
@@ -219,7 +219,7 @@
                                 <state key="normal" title="Aa-Zz"/>
                                 <connections>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="Gac-bc-tQz"/>
-                                    <action selector="unwindToCollection:" destination="E15-18-tDq" eventType="touchUpInside" id="Llf-BD-GrW"/>
+                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="BcI-mz-MGt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkH-cd-R73">
@@ -230,10 +230,10 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="ne1-yv-Gw3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <state key="normal" title="GAME"/>
+                                <state key="normal" title="YEAR"/>
                                 <connections>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="XHS-Po-DTe"/>
-                                    <action selector="unwindToCollection:" destination="E15-18-tDq" eventType="touchUpInside" id="iDj-sw-ipY"/>
+                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="4nM-Jc-dwY"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Sort Method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTj-mG-Nxu">
@@ -253,7 +253,7 @@
                                 <state key="normal" title="SERIES"/>
                                 <connections>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="XAR-EZ-0TG"/>
-                                    <action selector="unwindToCollection:" destination="E15-18-tDq" eventType="touchUpInside" id="ktg-M5-Qds"/>
+                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="elU-oG-Jp0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,12 +277,6 @@
                         <viewLayoutGuide key="safeArea" id="m0C-63-lSe"/>
                     </view>
                     <navigationItem key="navigationItem" id="dX0-4M-30S"/>
-                    <connections>
-                        <outletCollection property="sortButtons" destination="pfj-rf-WCc" collectionClass="NSMutableArray" id="khH-LX-Hsw"/>
-                        <outletCollection property="sortButtons" destination="jkH-cd-R73" collectionClass="NSMutableArray" id="Nc7-Vw-rQQ"/>
-                        <outletCollection property="sortButtons" destination="evj-yc-TmX" collectionClass="NSMutableArray" id="xGE-x5-gof"/>
-                        <outletCollection property="sortButtons" destination="kFZ-uB-Pda" collectionClass="NSMutableArray" id="kb0-m1-af6"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9W-kN-B9G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="HaS-By-3BZ" userLabel="Exit" sceneMemberID="exit"/>

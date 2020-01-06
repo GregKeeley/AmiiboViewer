@@ -33,7 +33,7 @@ struct AmiiboInfo: Codable {
                     amiibosByGame[currentIndex].append(amiiboElement)
                 } else {
                     currentIndex += 1
-                    print(currentIndex)
+                    
                     currentGame = amiiboElement.gameSeries
                     amiibosByGame[currentIndex].append(amiiboElement)
                 }
@@ -55,7 +55,7 @@ struct AmiiboInfo: Codable {
         }
     static func sortByYear(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
         let allYears = getAmiiboYears(amiibos: allAmiibos).sorted { $0 > $1 }
-        print(allYears)
+        
         var amiibosByYear = Array(repeating: [AmiiboElement](), count: allYears.count)
         var currentIndex = 0
         let sortedAmiibos = allAmiibos
@@ -76,14 +76,11 @@ struct AmiiboInfo: Codable {
                     amiibosByYear[currentIndex].append(amiiboElement)
                 } else {
                     currentIndex += 1
-                    print(currentIndex)
+                    
                     currentYear = amiiboYear
                     amiibosByYear[currentIndex].append(amiiboElement)
                 }
             }
-        }
-        for year in amiibosByYear {
-            print(year)
         }
         return amiibosByYear
     }

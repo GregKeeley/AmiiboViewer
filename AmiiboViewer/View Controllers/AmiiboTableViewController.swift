@@ -42,7 +42,7 @@ class AmiiboTableViewController: UIViewController {
     }
   // MARK: prepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailSegue" {
+        if segue.identifier == "tableViewToDetail" {
        guard let amiiboDetailVC = segue.destination as? AmiiboDetailViewController,
         let indexPath = tableview.indexPathForSelectedRow else {
             fatalError("failed to prepare for segue properly")

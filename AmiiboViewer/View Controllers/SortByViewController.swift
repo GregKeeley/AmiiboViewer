@@ -10,36 +10,28 @@ import UIKit
 
 class SortByViewController: UIViewController {
 
-    @IBOutlet var sortButtons: [UIButton]!
+//    @IBOutlet var sortButtons: [UIButton]!
     
-     var setSortMethod = Int()
+     var setFilterMethod = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-
-    
     @IBAction func sortButtonPressed(_ sender: UIButton) {
-        setSortMethod = sender.tag
-       
+        setFilterMethod = sender.tag
+        print("sortButton: \(setFilterMethod)")
         }
-       // dismiss(animated: true)
-//    }
-    @IBAction func unwindToCollection(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source as? AmiiboCollectionViewController
-        sourceViewController?.sortMethod = setSortMethod
-        sourceViewController?.loadAmiibos()
-    }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let collectionVC = segue.destination as? AmiiboCollectionViewController else {
             fatalError("Failed to prepare for segue to CollectionViewController")
         }
-        let sortMethod = setSortMethod
-        collectionVC.sortMethod = sortMethod
+        print("unwind: \(setFilterMethod)")
+        let filter = setFilterMethod
+        print(filter)
+        collectionVC.filterMethod = filter
+    
     }
     
 }

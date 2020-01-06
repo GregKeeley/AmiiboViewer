@@ -13,8 +13,8 @@ class AmiiboCollectionViewController: UIViewController {
     @IBOutlet weak var amiiboCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var filterMethod = 0
-    var sortMethod = 0
+    var filterMethod = 1
+    
     
     var amiibos = [[AmiiboElement]]() {
         didSet {
@@ -31,6 +31,8 @@ class AmiiboCollectionViewController: UIViewController {
         amiiboCollectionView.dataSource = self
         amiiboCollectionView.delegate = self
         loadAmiibos()
+        
+        
 
     }
 
@@ -41,6 +43,7 @@ class AmiiboCollectionViewController: UIViewController {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
+                print("collectionView: \(self!.filterMethod)")
             let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data)
                 self?.amiibos = filteredAmiibos
             }
@@ -50,20 +53,22 @@ class AmiiboCollectionViewController: UIViewController {
     //MARK: prepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue" {
+            
             guard let amiiboDetailVC = segue.destination as? AmiiboDetailViewController,
                 let indexPath = amiiboCollectionView.indexPathsForSelectedItems?.first else {
                     fatalError("Failed to prepare for Detail Segue")
             }
             amiiboDetailVC.amiibo = amiibos[indexPath.section][indexPath.row]
         } else if segue.identifier == "collectionToTableViewSegue" {
-            guard let amiiboTableView = segue.destination as? AmiiboTableViewController else {
+            
+            guard segue.destination is AmiiboTableViewController else {
                     fatalError("Failed to prepare for tableViewSegue")
             }
-            amiiboTableView.amiibos = amiibos
+            //amiiboTableView.amiibos = amiibos
         }
     }
     
-//MARK: Unwind
+//MARK: IBActions
     @IBAction func unwind(segue: UIStoryboardSegue) {
         loadAmiibos()
     }
@@ -85,7 +90,9 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "amiiboCollectionCell", for: indexPath) as? AmiiboCollectionViewCell
         cell?.contentView.layer.cornerRadius = 8.0
-        cell?.contentView.layer.borderWidth = 1.0
+        cell?.contentView.layer.borderWidth = 4.0
+        cell?.selectedBackgroundView?.layer.cornerRadius = 8.0
+        cell?.backgroundView?.layer.cornerRadius = 8.0
         cell!.congifureCell(for: amiibos[indexPath.section][indexPath.row])
         return cell!
     }
@@ -95,7 +102,7 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
 //MARK: CollectionViewDelegate
 extension AmiiboCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150.0, height: 150.0)
+        return CGSize(width: CGFloat((amiiboCollectionView.frame.size.width / 3) - 10), height: CGFloat(100))
     }
 }
 extension AmiiboCollectionViewController: UICollectionViewDelegate {
@@ -110,7 +117,7 @@ extension AmiiboCollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
         amiibos = AmiiboInfo.searchAmiibos(method: filterMethod, searchQuery: searchBar.text?.lowercased() ?? "mario", allAmiibos: amiibos)
-        print(searchText)
+        
     }
     
 }

@@ -62,7 +62,7 @@ class AmiiboTableViewCell: UITableViewCell {
         let uniqueGames = getGameSeries(amiibos: amiibos)
        
         var currentIndex = 0
-        let currentGame = "\(amiibos[currentIndex].gameSeries)"
+        // currentGame = "\(amiibos[currentIndex].gameSeries)"
 
             for game in uniqueGames {
                 for amiibo in amiibos {
@@ -106,7 +106,7 @@ class AmiiboTableViewCell: UITableViewCell {
         
         for amiibo in amiibos {
             let amiiboReleaseYear = amiibo.release.na?.components(separatedBy: "-")
-            print(amiiboReleaseYear?[0])
+            
             switch amiiboReleaseYear?[0] {
             case "2014":
                 amiibosByYear[1].append(amiibo)
