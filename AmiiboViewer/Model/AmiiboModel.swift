@@ -101,7 +101,20 @@ struct AmiiboInfo: Codable {
         }
         return filteredAmiibos
     }
-
+    static func searchAmiibos(method: Int,searchQuery: String, allAmiibos: [[AmiiboElement]])-> [[AmiiboElement]] {
+        var searchResults = [AmiiboElement]()
+        var filteredResults = [[AmiiboElement]]()
+        for section in allAmiibos {
+            for amiibo in section {
+                if amiibo.name.lowercased().contains(searchQuery) {
+                    searchResults.append(amiibo)
+                }
+            }
+            filteredResults = AmiiboInfo.filterAmiibos(for: method, allAmiibos: searchResults)
+        }
+        return filteredResults
+    
+    }
 }
 // MARK: AmiiboElement / Release
 struct AmiiboElement: Codable {

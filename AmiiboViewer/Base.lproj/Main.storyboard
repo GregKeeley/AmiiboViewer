@@ -58,7 +58,7 @@
                                             <outlet property="amiiboImageView" destination="inf-6B-Uyi" id="qPB-z2-wWx"/>
                                             <outlet property="amiiboNameLabel" destination="jha-7Y-pCx" id="NNt-Dn-O3u"/>
                                             <outlet property="releaseDateLabel" destination="xFM-tI-0ga" id="qPR-Jv-1BA"/>
-                                            <segue destination="5bo-RR-FFy" kind="show" id="Kjx-WQ-5LV"/>
+                                            <segue destination="5bo-RR-FFy" kind="show" identifier="tableViewToDetail" id="Kjx-WQ-5LV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -105,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VhN-nr-a9P">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="764"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="A7f-ML-NaI">
                                     <size key="itemSize" width="50" height="50"/>
@@ -140,12 +140,20 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" placeholder="Search By Name" translatesAutoresizingMaskIntoConstraints="NO" id="paC-rf-ZVk">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="X6m-rr-6bA" firstAttribute="trailing" secondItem="VhN-nr-a9P" secondAttribute="trailing" id="1FN-C3-fZN"/>
                             <constraint firstItem="VhN-nr-a9P" firstAttribute="leading" secondItem="X6m-rr-6bA" secondAttribute="leading" id="30x-oW-8FW"/>
-                            <constraint firstItem="VhN-nr-a9P" firstAttribute="top" secondItem="ybj-5M-tyt" secondAttribute="top" constant="44" id="ZsJ-ke-A0X"/>
+                            <constraint firstItem="VhN-nr-a9P" firstAttribute="top" secondItem="paC-rf-ZVk" secondAttribute="bottom" id="F3W-Gh-kH8"/>
+                            <constraint firstItem="paC-rf-ZVk" firstAttribute="trailing" secondItem="X6m-rr-6bA" secondAttribute="trailing" id="UGc-jg-W6I"/>
+                            <constraint firstItem="VhN-nr-a9P" firstAttribute="top" secondItem="ybj-5M-tyt" secondAttribute="top" constant="132" id="ZsJ-ke-A0X"/>
+                            <constraint firstItem="paC-rf-ZVk" firstAttribute="leading" secondItem="X6m-rr-6bA" secondAttribute="leading" id="bcD-nU-jIl"/>
+                            <constraint firstItem="paC-rf-ZVk" firstAttribute="top" secondItem="X6m-rr-6bA" secondAttribute="top" id="jRN-ux-Dy1"/>
                             <constraint firstItem="VhN-nr-a9P" firstAttribute="bottom" secondItem="X6m-rr-6bA" secondAttribute="bottom" constant="34" id="pPb-6Z-akQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X6m-rr-6bA"/>
@@ -156,19 +164,27 @@
                                 <segue destination="E15-18-tDq" kind="presentation" identifier="collectionToFilter" id="JZX-mG-9gg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Table View" id="Pz3-GE-BJg">
-                            <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="ryJ-Lb-AG3"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Table View" id="Pz3-GE-BJg">
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="collectionToTableViewSegue" id="ryJ-Lb-AG3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Cancel" id="Kr3-UC-ttZ">
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="Ywc-Xc-3i7" id="3jS-2R-PnS"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="amiiboCollectionView" destination="VhN-nr-a9P" id="JYK-b1-3ai"/>
+                        <outlet property="searchBar" destination="paC-rf-ZVk" id="Pe9-aA-N5U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDr-3c-pp8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="906"/>
+            <point key="canvasLocation" x="579.71014492753625" y="905.35714285714278"/>
         </scene>
         <!--Sort By View Controller-->
         <scene sceneID="0ND-35-4Vy">
