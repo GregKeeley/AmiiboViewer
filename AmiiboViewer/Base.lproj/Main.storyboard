@@ -196,7 +196,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfj-rf-WCc">
-                                <rect key="frame" x="89" y="263" width="120" height="120"/>
+                                <rect key="frame" x="89" y="288" width="120" height="120"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Bl3-kK-dIz"/>
@@ -206,11 +206,10 @@
                                 <state key="normal" title="GAME"/>
                                 <connections>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="z7K-xu-p3c"/>
-                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="smq-Xl-bTe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-uB-Pda">
-                                <rect key="frame" x="217" y="391" width="120" height="120"/>
+                                <rect key="frame" x="217" y="416" width="120" height="105"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="hN8-nQ-rwA"/>
@@ -219,11 +218,10 @@
                                 <state key="normal" title="Aa-Zz"/>
                                 <connections>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="Gac-bc-tQz"/>
-                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="BcI-mz-MGt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkH-cd-R73">
-                                <rect key="frame" x="217" y="263" width="120" height="120"/>
+                                <rect key="frame" x="217" y="288" width="120" height="120"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="MvS-wc-kY9"/>
@@ -233,36 +231,48 @@
                                 <state key="normal" title="YEAR"/>
                                 <connections>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="XHS-Po-DTe"/>
-                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="4nM-Jc-dwY"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Sort Method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTj-mG-Nxu">
-                                <rect key="frame" x="20" y="125" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="125" width="374" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evj-yc-TmX">
-                                <rect key="frame" x="89" y="391" width="120" height="120"/>
+                                <rect key="frame" x="89" y="416" width="120" height="105"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="gtc-bu-6pm"/>
+                                    <constraint firstAttribute="height" constant="105" id="gtc-bu-6pm"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="wON-Jj-SKM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <state key="normal" title="SERIES"/>
                                 <connections>
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="XAR-EZ-0TG"/>
-                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="elU-oG-Jp0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQ8-ro-YSN">
+                                <rect key="frame" x="89" y="529" width="248" height="51"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Set Sort Method"/>
+                                <connections>
+                                    <action selector="setSortMethodPressed" destination="E15-18-tDq" eventType="touchUpInside" id="4Vr-hJ-yIH"/>
+                                    <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="Jar-QG-wSd"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="m0C-63-lSe" firstAttribute="trailing" secondItem="kFZ-uB-Pda" secondAttribute="trailing" constant="77" id="0Co-EG-ncD"/>
+                            <constraint firstItem="m0C-63-lSe" firstAttribute="trailing" secondItem="bQ8-ro-YSN" secondAttribute="trailing" constant="77" id="6Bw-7d-fT9"/>
+                            <constraint firstItem="bQ8-ro-YSN" firstAttribute="leading" secondItem="m0C-63-lSe" secondAttribute="leading" constant="89" id="6Iu-fL-Ncg"/>
                             <constraint firstItem="pfj-rf-WCc" firstAttribute="leading" secondItem="m0C-63-lSe" secondAttribute="leading" constant="89" id="73q-ZD-gmH"/>
                             <constraint firstItem="kFZ-uB-Pda" firstAttribute="top" secondItem="jkH-cd-R73" secondAttribute="bottom" constant="8" id="9ag-5B-KeP"/>
                             <constraint firstItem="kFZ-uB-Pda" firstAttribute="top" secondItem="evj-yc-TmX" secondAttribute="top" id="Aw0-UH-MtL"/>
+                            <constraint firstItem="bQ8-ro-YSN" firstAttribute="top" secondItem="kFZ-uB-Pda" secondAttribute="bottom" constant="8" id="QqF-Zs-yrs"/>
+                            <constraint firstItem="m0C-63-lSe" firstAttribute="bottom" secondItem="bQ8-ro-YSN" secondAttribute="bottom" constant="228" id="Qxo-gM-2jU"/>
                             <constraint firstItem="kFZ-uB-Pda" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="evj-yc-TmX" secondAttribute="trailing" constant="8" symbolic="YES" id="aEm-j4-FZR"/>
                             <constraint firstItem="jkH-cd-R73" firstAttribute="leading" secondItem="pfj-rf-WCc" secondAttribute="trailing" constant="8" id="aKY-qF-yI9"/>
                             <constraint firstItem="eTj-mG-Nxu" firstAttribute="centerX" secondItem="JXo-D9-IUN" secondAttribute="centerX" id="bAP-b2-U0C"/>
@@ -277,11 +287,18 @@
                         <viewLayoutGuide key="safeArea" id="m0C-63-lSe"/>
                     </view>
                     <navigationItem key="navigationItem" id="dX0-4M-30S"/>
+                    <connections>
+                        <outlet property="alphaButton" destination="kFZ-uB-Pda" id="JBM-0G-dBZ"/>
+                        <outlet property="gameButton" destination="pfj-rf-WCc" id="OH8-Nf-Z3F"/>
+                        <outlet property="seriesButton" destination="evj-yc-TmX" id="Ikb-fI-eed"/>
+                        <outlet property="setSortButton" destination="bQ8-ro-YSN" id="S3l-fs-etb"/>
+                        <outlet property="yearButton" destination="jkH-cd-R73" id="eLo-lI-pF4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9W-kN-B9G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="HaS-By-3BZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="1214"/>
+            <point key="canvasLocation" x="1915.9420289855075" y="1213.3928571428571"/>
         </scene>
         <!--Amiibo Detail View Controller-->
         <scene sceneID="5xI-Mp-EGP">

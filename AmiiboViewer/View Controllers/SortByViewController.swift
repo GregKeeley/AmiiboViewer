@@ -10,28 +10,30 @@ import UIKit
 
 class SortByViewController: UIViewController {
 
-//    @IBOutlet var sortButtons: [UIButton]!
+//    @IBOutlet var sortButtons: [UIButton]!\
+    
+    @IBOutlet weak var yearButton: UIButton!
+    @IBOutlet weak var gameButton: UIButton!
+    @IBOutlet weak var seriesButton: UIButton!
+    @IBOutlet weak var alphaButton: UIButton!
+    @IBOutlet weak var setSortButton: UIButton!
     
      var setFilterMethod = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        yearButton.layer.cornerRadius = 8
+        gameButton.layer.cornerRadius = 8
+        seriesButton.layer.cornerRadius = 8
+        alphaButton.layer.cornerRadius = 8
+        setSortButton.layer.cornerRadius = 8
     }
+    
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         setFilterMethod = sender.tag
         print("sortButton: \(setFilterMethod)")
         }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let collectionVC = segue.destination as? AmiiboCollectionViewController else {
-            fatalError("Failed to prepare for segue to CollectionViewController")
-        }
-        print("unwind: \(setFilterMethod)")
-        let filter = setFilterMethod
-        print(filter)
-        collectionVC.filterMethod = filter
-    
+    @IBAction func setSortMethodPressed() {
+        
     }
-    
 }

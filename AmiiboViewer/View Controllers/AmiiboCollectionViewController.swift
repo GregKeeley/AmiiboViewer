@@ -43,9 +43,10 @@ class AmiiboCollectionViewController: UIViewController {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
-                print("collectionView: \(self!.filterMethod)")
-            let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data)
-                self?.amiibos = filteredAmiibos
+                    print("collectionView: \(self!.filterMethod)")
+                    let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data)
+                    self?.amiibos = filteredAmiibos
+                
             }
         }
     }
@@ -64,12 +65,17 @@ class AmiiboCollectionViewController: UIViewController {
             guard segue.destination is AmiiboTableViewController else {
                     fatalError("Failed to prepare for tableViewSegue")
             }
-            //amiiboTableView.amiibos = amiibos
         }
     }
     
 //MARK: IBActions
-    @IBAction func unwind(segue: UIStoryboardSegue) {
+    @IBAction func unwind(segue: UIStoryboardSegue/*, sender: UIButton*/) {
+        guard let sortByController = segue.source as? SortByViewController else {
+            fatalError("Failed to unwind properly from sortByController")
+        }
+
+        self.filterMethod = sortByController.setFilterMethod // 1
+        print("unWindSegue: \(filterMethod)")
         loadAmiibos()
     }
 
@@ -91,6 +97,7 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "amiiboCollectionCell", for: indexPath) as? AmiiboCollectionViewCell
         cell?.contentView.layer.cornerRadius = 8.0
         cell?.contentView.layer.borderWidth = 4.0
+        cell?.amiiboImageView.layer.cornerRadius = 8.0
         cell?.selectedBackgroundView?.layer.cornerRadius = 8.0
         cell?.backgroundView?.layer.cornerRadius = 8.0
         cell!.congifureCell(for: amiibos[indexPath.section][indexPath.row])
