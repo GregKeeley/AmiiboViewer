@@ -69,13 +69,11 @@ class AmiiboCollectionViewController: UIViewController {
     }
     
 //MARK: IBActions
-    @IBAction func unwind(segue: UIStoryboardSegue/*, sender: UIButton*/) {
+    @IBAction func unwind(segue: UIStoryboardSegue) {
         guard let sortByController = segue.source as? SortByViewController else {
             fatalError("Failed to unwind properly from sortByController")
         }
-
-        self.filterMethod = sortByController.setFilterMethod // 1
-        print("unWindSegue: \(filterMethod)")
+        self.filterMethod = sortByController.setFilterMethod
         loadAmiibos()
     }
 
@@ -84,7 +82,7 @@ class AmiiboCollectionViewController: UIViewController {
     }
     
 }
-//MARK: tableView Extension
+//MARK: CollectionView Extension
 extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         amiibos.count
@@ -95,16 +93,15 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "amiiboCollectionCell", for: indexPath) as? AmiiboCollectionViewCell
-        cell?.contentView.layer.cornerRadius = 8.0
-        cell?.contentView.layer.borderWidth = 4.0
-        cell?.amiiboImageView.layer.cornerRadius = 8.0
-        cell?.selectedBackgroundView?.layer.cornerRadius = 8.0
-        cell?.backgroundView?.layer.cornerRadius = 8.0
         cell!.congifureCell(for: amiibos[indexPath.section][indexPath.row])
+        cell?.amiiboImageView.layer.masksToBounds = true
+        cell?.amiiboImageView.layer.cornerRadius = 8.0
+        cell?.contentView.layer.cornerRadius = 8.0
+        cell?.contentView.layer.borderWidth = 2.0
         return cell!
     }
     
-   
+    
 }
 //MARK: CollectionViewDelegate
 extension AmiiboCollectionViewController: UICollectionViewDelegateFlowLayout {

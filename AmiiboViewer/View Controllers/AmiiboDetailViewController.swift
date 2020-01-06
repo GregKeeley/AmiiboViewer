@@ -47,7 +47,6 @@ class AmiiboDetailViewController: UIViewController {
     }
     @IBAction func viewButtonPressed() {
         if viewButton.backgroundColor == .black {
-            
             viewButton.backgroundColor = .clear
             amiiboNameLabel.isHidden = true
             characterNameLabel.isHidden = true
@@ -61,7 +60,6 @@ class AmiiboDetailViewController: UIViewController {
             gameSeriesLabel.isHidden = false
             amiiboSeriesLabel.isHidden = false
             releaseDateLabel.isHidden = false
-            
         }
     }
 }

@@ -9,8 +9,6 @@
 import UIKit
 
 class SortByViewController: UIViewController {
-
-//    @IBOutlet var sortButtons: [UIButton]!\
     
     @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var gameButton: UIButton!
@@ -28,12 +26,9 @@ class SortByViewController: UIViewController {
         alphaButton.layer.cornerRadius = 8
         setSortButton.layer.cornerRadius = 8
     }
-    
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         setFilterMethod = sender.tag
-        print("sortButton: \(setFilterMethod)")
         }
     @IBAction func setSortMethodPressed() {
-        
     }
 }
