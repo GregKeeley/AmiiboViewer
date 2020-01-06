@@ -10,7 +10,8 @@ import Foundation
 
 struct AmiiboInfo: Codable {
     let amiibo: [AmiiboElement]
-    
+ 
+    //MARK: SortByGame
     static func getGameSeries(amiibos: [AmiiboElement]) -> [String] {
         var uniqueGames = [String]()
         for amiibo in amiibos {
@@ -40,6 +41,7 @@ struct AmiiboInfo: Codable {
         }
         return amiibosByGame
     }
+    // MARK: SortByYear
     static func getAmiiboYears(amiibos: [AmiiboElement]) -> [String] {
             var uniqueYears = [String]()
             for amiibo in amiibos {
@@ -85,7 +87,23 @@ struct AmiiboInfo: Codable {
         }
         return amiibosByYear
     }
+    //MARK: FilterAmiibos
+    static func filterAmiibos(for method: Int, allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
+        var filteredAmiibos = [[AmiiboElement]]()
+        switch method {
+        case 0:
+            filteredAmiibos = AmiiboInfo.sortByGame(allAmiibos: allAmiibos)
+            
+        case 1:
+            filteredAmiibos = AmiiboInfo.sortByYear(allAmiibos: allAmiibos)
+        default:
+            break
+        }
+        return filteredAmiibos
+    }
+
 }
+// MARK: AmiiboElement / Release
 struct AmiiboElement: Codable {
     let amiiboSeries, character, gameSeries, head: String
     let image: String

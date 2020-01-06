@@ -13,6 +13,7 @@ class AmiiboTableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var filterMethod = 1
     var amiibos = [[AmiiboElement]]() {
         didSet {
             DispatchQueue.main.async {
@@ -20,27 +21,28 @@ class AmiiboTableViewController: UIViewController {
             }
         }
     }
-    
+ //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.delegate = self
         tableview.dataSource = self
         loadAmiibos()
     }
+ //MARK: loadAmiibos
     func loadAmiibos() {
         AmiiboAPI.getAllAmiibos { [weak self] result in
             switch result {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
-                //let sortedByGameAmiibos = AmiiboInfo.sortByGame(allAmiibos: data)
-                let sortedByGameAmiibos = AmiiboInfo.sortByYear(allAmiibos: data)
-                self?.amiibos = sortedByGameAmiibos
+                let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data)
+                self?.amiibos = filteredAmiibos
             }
         }
     }
+  // MARK: prepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "" {
+        if segue.identifier == "detailSegue" {
        guard let amiiboDetailVC = segue.destination as? AmiiboDetailViewController,
         let indexPath = tableview.indexPathForSelectedRow else {
             fatalError("failed to prepare for segue properly")
@@ -52,6 +54,7 @@ class AmiiboTableViewController: UIViewController {
         }
     }
 }
+//MARK: Extensions
 extension AmiiboTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         amiibos[section].count
@@ -68,7 +71,23 @@ extension AmiiboTableViewController: UITableViewDataSource {
         return amiibos.count
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ("\(amiibos[section].first?.gameSeries ?? "ERROR") : \(amiibos[section].count)")
+        var title = String()
+        switch filterMethod {
+            
+        case 0:
+            title = ("\(amiibos[section].first?.gameSeries ?? "ERROR") : \(amiibos[section].count)")
+            
+        case 1:
+            let year = amiibos[section].first?.release.na?.components(separatedBy: "-")
+            title = ("\(year?[0] ?? "N/A") : \(amiibos[section].count)")
+        case 2:
+            break
+        case 3:
+            break
+        default:
+            title = "Amiibos: \(amiibos.count)"
+        }
+        return title
     }
     
 }
