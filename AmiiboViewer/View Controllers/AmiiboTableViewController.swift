@@ -90,9 +90,11 @@ extension AmiiboTableViewController: UITableViewDataSource {
             let year = amiibos[section].first?.release.na?.components(separatedBy: "-")
             title = ("\(year?[0] ?? "N/A") : \(amiibos[section].count)")
         case 2:
-            break
+            let series = amiibos[section].first?.amiiboSeries
+            title = ("Series: \(series ?? "N/A")")
         case 3:
-            break
+            let alphaSection = amiibos[section].first?.name.components(separatedBy: "")
+            title = alphaSection?[0] ?? "---"
         default:
             title = "Amiibos: \(amiibos.count)"
         }

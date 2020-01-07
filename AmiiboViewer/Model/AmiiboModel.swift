@@ -10,9 +10,9 @@ import Foundation
 
 struct AmiiboInfo: Codable {
     let amiibo: [AmiiboElement]
- 
     
-   static func getRidOfCards(allAmiibos: [AmiiboElement]) -> [AmiiboElement] {
+    
+    static func getRidOfCards(allAmiibos: [AmiiboElement]) -> [AmiiboElement] {
         var allAmiibosNoCards = [AmiiboElement]()
         for amiibo in allAmiibos {
             if amiibo.type != "Card" {
@@ -54,15 +54,15 @@ struct AmiiboInfo: Codable {
     }
     // MARK: SortByYear
     static func getAmiiboYears(amiibos: [AmiiboElement]) -> [String] {
-            var uniqueYears = [String]()
+        var uniqueYears = [String]()
         for amiibo in amiibos {
-                let releaseYear = amiibo.release.na?.components(separatedBy: "-")
-                if !uniqueYears.contains(String(releaseYear?[0] ?? "0000")) {
-                    uniqueYears.append(releaseYear?[0] ?? "0000")
+            let releaseYear = amiibo.release.na?.components(separatedBy: "-")
+            if !uniqueYears.contains(String(releaseYear?[0] ?? "0000")) {
+                uniqueYears.append(releaseYear?[0] ?? "0000")
             }
         }
-            return uniqueYears
-        }
+        return uniqueYears
+    }
     static func sortByYear(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
         let allYears = getAmiiboYears(amiibos: allAmiibos).sorted { $0 > $1 }
         var amiibosByYear = Array(repeating: [AmiiboElement](), count: allYears.count)
@@ -72,20 +72,17 @@ struct AmiiboInfo: Codable {
             .sorted { $0.release.na! > $1.release.na! }
         var currentYear = sortedAmiibos.first?.release.na?.components(separatedBy: "-")
         for amiiboElement in allAmiibos {
-                if amiiboElement.release.na == nil {
-                    amiibosByYear[(amiibosByYear.count - 1)].append(amiiboElement)
-                }
+            if amiiboElement.release.na == nil {
+                amiibosByYear[(amiibosByYear.count - 1)].append(amiiboElement)
             }
-        
+        }
         if currentIndex < amiibosByYear.count {
             for amiiboElement in sortedAmiibos {
-                
                 let amiiboYear = amiiboElement.release.na?.components(separatedBy: "-")
                 if amiiboYear?[0] == currentYear?[0] {
                     amiibosByYear[currentIndex].append(amiiboElement)
                 } else {
                     currentIndex += 1
-                    
                     currentYear = amiiboYear
                     amiibosByYear[currentIndex].append(amiiboElement)
                 }
@@ -93,20 +90,84 @@ struct AmiiboInfo: Codable {
         }
         return amiibosByYear
     }
+    //MARK: SortByAlpha
+    static func getAlphaSections(amiibos: [AmiiboElement]) -> [String] {
+        var uniqueSections = [String]()
+        for amiibo in amiibos {
+            let firstChar = amiibo.name.components(separatedBy: "")
+            if !uniqueSections.contains(String(firstChar[0])) {
+                uniqueSections.append(firstChar[0])
+            }
+        }
+        return uniqueSections
+    }
+    static func sortByAlpha(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
+        let allAlphaSections = getAlphaSections(amiibos: allAmiibos).sorted { $0 < $1 }
+        var amiibosByAlpha = Array(repeating: [AmiiboElement](), count: allAlphaSections.count)
+        let sortedAmiibos = allAmiibos.sorted { $0.name < $1.name }
+        var currentIndex = 0
+        var currentSection = sortedAmiibos.first?.name.components(separatedBy: "")
+        for amiiboElement in sortedAmiibos {
+            let amiiboSection = amiiboElement.name.components(separatedBy: "")
+            if amiiboSection[0] == currentSection?[0] {
+                amiibosByAlpha[currentIndex].append(amiiboElement)
+            } else {
+                currentIndex += 1
+                currentSection = amiiboSection
+                amiibosByAlpha[currentIndex].append(amiiboElement)
+            }
+        }
+        return amiibosByAlpha
+    }
+    //MARK: sortByAmiiboSeries
+    static func getAmiiboSeries(amiibos: [AmiiboElement]) -> [String] {
+        var uniqueSeries = [String]()
+        for amiibo in amiibos {
+            if !uniqueSeries.contains(amiibo.amiiboSeries) {
+                uniqueSeries.append(amiibo.amiiboSeries)
+            }
+        }
+        return uniqueSeries
+    }
+    static func sortByAmiiboSeries(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
+        let allAmiiboSeries = getAmiiboSeries(amiibos: allAmiibos).sorted { $0 > $1 }
+        var amiibosBySeries = Array(repeating: [AmiiboElement](), count: allAmiiboSeries.count)
+        var currentIndex = 0
+        let sortedAmiibos = allAmiibos
+            .sorted { $0.amiiboSeries > $1.amiiboSeries }
+        var currentSeries = sortedAmiibos.first?.amiiboSeries
+            for amiiboElement in sortedAmiibos {
+                let amiiboSeries = amiiboElement.amiiboSeries
+                if amiiboSeries == currentSeries {
+                    amiibosBySeries[currentIndex].append(amiiboElement)
+                    
+                } else {
+                    currentIndex += 1
+                    currentSeries = amiiboSeries
+                    amiibosBySeries[currentIndex].append(amiiboElement)
+                }
+            }
+        return amiibosBySeries
+    }
+    
     //MARK: FilterAmiibos
     static func filterAmiibos(for method: Int, allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
         let noCardsAmiibos = getRidOfCards(allAmiibos: allAmiibos)
         var filteredAmiibos = [[AmiiboElement]]()
-
+        
         switch method {
         case 0:
             filteredAmiibos = AmiiboInfo.sortByGame(allAmiibos: noCardsAmiibos)
         case 1:
             filteredAmiibos = AmiiboInfo.sortByYear(allAmiibos: noCardsAmiibos)
+        case 2:
+            filteredAmiibos = AmiiboInfo.sortByAmiiboSeries(allAmiibos: noCardsAmiibos)
+        case 3:
+            filteredAmiibos = AmiiboInfo.sortByAlpha(allAmiibos: noCardsAmiibos)
         default:
             break
         }
-                
+        
         return filteredAmiibos
     }
     static func searchAmiibos(method: Int,searchQuery: String, allAmiibos: [[AmiiboElement]])-> [[AmiiboElement]] {

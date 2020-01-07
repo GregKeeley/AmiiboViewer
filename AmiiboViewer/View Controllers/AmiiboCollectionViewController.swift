@@ -73,13 +73,14 @@ class AmiiboCollectionViewController: UIViewController {
             case 0:
                 sectionHeader.sectionHeaderlabel.text = ("\(amiibos[indexPath.section].first?.gameSeries ?? "ERROR") : \(amiibos[indexPath.section].count)")
             case 1:
-
                 let year = amiibos[indexPath.section].first?.release.na?.components(separatedBy: "-")
                 sectionHeader.sectionHeaderlabel.text = ("\(year?[0] ?? "N/A") : \(amiibos[indexPath.section].count)")
             case 2:
-                break
+                let series = amiibos[indexPath.section].first?.amiiboSeries
+                sectionHeader.sectionHeaderlabel.text = ("Series: \(series ?? "N/A")")
             case 3:
-                break
+                let alphaSection = amiibos[indexPath.section].first?.name.components(separatedBy: "")
+                sectionHeader.sectionHeaderlabel.text = ("\(alphaSection?[0] ?? "---")")
             default:
                 title = "Amiibos: \(amiibos.count)"
             }
@@ -116,6 +117,7 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "amiiboCollectionCell", for: indexPath) as? AmiiboCollectionViewCell
         cell!.congifureCell(for: amiibos[indexPath.section][indexPath.row])
+        
         cell?.amiiboImageView.layer.masksToBounds = true
         cell?.amiiboImageView.layer.cornerRadius = 8.0
         cell?.contentView.layer.cornerRadius = 8.0
