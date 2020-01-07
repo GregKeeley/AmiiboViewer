@@ -49,9 +49,18 @@ class AmiiboTableViewController: UIViewController {
             }
             let amiibo = amiibos[indexPath.row]
             amiiboDetailVC.amiibo = amiibo[indexPath.row]
-        } else {
-           
+        } else if segue.identifier == "tableToSort" {
+            guard segue.destination is SortByViewController else {
+                fatalError("Failed to segue to sortMethodVC")
+            }
         }
+    }
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        guard let sortByController = segue.source as? SortByViewController else {
+            fatalError("Failed to unwind properly from sortByController")
+        }
+        self.filterMethod = sortByController.setFilterMethod
+        loadAmiibos()
     }
 }
 //MARK: Extensions

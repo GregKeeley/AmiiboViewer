@@ -29,6 +29,7 @@ struct AmiiboInfo: Codable {
                 uniqueGames.append(amiibo.gameSeries)
             }
         }
+        print(uniqueGames)
         return uniqueGames
     }
     static func sortByGame(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
@@ -50,18 +51,19 @@ struct AmiiboInfo: Codable {
                 }
             }
         }
-        return amiibosByGame
+
+        let filteredAmiibosByGame = amiibosByGame.filter { !$0.isEmpty }
+        return filteredAmiibosByGame
     }
     // MARK: SortByYear
     static func getAmiiboYears(amiibos: [AmiiboElement]) -> [String] {
             var uniqueYears = [String]()
-            for amiibo in amiibos {
-                
+        for amiibo in amiibos {
                 let releaseYear = amiibo.release.na?.components(separatedBy: "-")
                 if !uniqueYears.contains(String(releaseYear?[0] ?? "0000")) {
                     uniqueYears.append(releaseYear?[0] ?? "0000")
-                }
             }
+        }
             return uniqueYears
         }
     static func sortByYear(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
@@ -76,7 +78,6 @@ struct AmiiboInfo: Codable {
         for amiiboElement in allAmiibos {
                 if amiiboElement.release.na == nil {
                     amiibosByYear[6].append(amiiboElement)
-                    dump(amiibosByYear[6].count)
                 }
             }
         

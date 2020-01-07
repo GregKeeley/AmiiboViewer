@@ -67,8 +67,29 @@ class AmiiboCollectionViewController: UIViewController {
             }
         }
     }
-    
-//MARK: IBActions
+    //MARK: CollectionReuableView
+    func collectionView(_ amiiboCollection: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if let sectionHeader = amiiboCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionLabel", for: indexPath) as? SectionHeader {
+            switch filterMethod {
+            case 0:
+                sectionHeader.sectionHeaderlabel.text = ("\(amiibos[indexPath.section].first?.gameSeries ?? "ERROR") : \(amiibos[indexPath.section].count)")
+            case 1:
+
+                let year = amiibos[indexPath.section].first?.release.na?.components(separatedBy: "-")
+                sectionHeader.sectionHeaderlabel.text = ("\(year?[0] ?? "N/A") : \(amiibos[indexPath.section].count)")
+            case 2:
+                break
+            case 3:
+                break
+            default:
+                title = "Amiibos: \(amiibos.count)"
+            }
+            return sectionHeader
+        }
+        return UICollectionReusableView()
+    }
+//MARK: IBActions (UnwindSegue)
     @IBAction func unwind(segue: UIStoryboardSegue) {
         guard let sortByController = segue.source as? SortByViewController else {
             fatalError("Failed to unwind properly from sortByController")
@@ -85,10 +106,13 @@ class AmiiboCollectionViewController: UIViewController {
 //MARK: CollectionView Extension
 extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        amiibos.count
+
+        print(amiibos.count)
+       return amiibos.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        amiibos[section].count
+        
+        return amiibos[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

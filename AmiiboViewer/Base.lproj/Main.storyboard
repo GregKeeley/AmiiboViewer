@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cqe-vu-q2v">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -84,7 +84,11 @@
                     <navigationItem key="navigationItem" id="17e-hh-zGb">
                         <rightBarButtonItems>
                             <barButtonItem id="qfO-gv-lUY"/>
-                            <barButtonItem title="Sort By" id="D1H-IR-IJP"/>
+                            <barButtonItem title="Sort By" id="D1H-IR-IJP">
+                                <connections>
+                                    <segue destination="E15-18-tDq" kind="show" identifier="tableToSort" id="lOx-eD-4g1"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -140,9 +144,26 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DTm-Yu-H09">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="sectionLabel" id="DTm-Yu-H09" customClass="SectionHeader" customModule="AmiiboViewer" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n6-yJ-tQ1">
+                                            <rect key="frame" x="8" y="0.0" width="358" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6n6-yJ-tQ1" firstAttribute="leading" secondItem="DTm-Yu-H09" secondAttribute="leading" constant="8" id="NWA-4s-cCA"/>
+                                        <constraint firstAttribute="bottom" secondItem="6n6-yJ-tQ1" secondAttribute="bottom" id="Q09-Rq-s5L"/>
+                                        <constraint firstItem="6n6-yJ-tQ1" firstAttribute="top" secondItem="DTm-Yu-H09" secondAttribute="top" id="QO8-B1-eeq"/>
+                                        <constraint firstAttribute="trailing" secondItem="6n6-yJ-tQ1" secondAttribute="trailing" constant="8" id="mVs-yn-Oen"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="sectionHeaderlabel" destination="6n6-yJ-tQ1" id="sGO-cu-Jq4"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                             <searchBar contentMode="redraw" placeholder="Search By Name" translatesAutoresizingMaskIntoConstraints="NO" id="paC-rf-ZVk">
@@ -172,7 +193,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Sort By" id="SWW-bh-jOy">
                                 <connections>
-                                    <segue destination="E15-18-tDq" kind="presentation" identifier="" id="JZX-mG-9gg"/>
+                                    <segue destination="E15-18-tDq" kind="presentation" identifier="collectionToSort" id="JZX-mG-9gg"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Cancel" id="Kr3-UC-ttZ">
@@ -196,11 +217,11 @@
             <objects>
                 <viewController id="E15-18-tDq" customClass="SortByViewController" customModule="AmiiboViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JXo-D9-IUN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfj-rf-WCc">
-                                <rect key="frame" x="89" y="288" width="120" height="120"/>
+                                <rect key="frame" x="89" y="342" width="120" height="120"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Bl3-kK-dIz"/>
@@ -213,7 +234,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-uB-Pda">
-                                <rect key="frame" x="217" y="416" width="120" height="105"/>
+                                <rect key="frame" x="217" y="470" width="120" height="105"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="hN8-nQ-rwA"/>
@@ -225,7 +246,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkH-cd-R73">
-                                <rect key="frame" x="217" y="288" width="120" height="120"/>
+                                <rect key="frame" x="217" y="342" width="120" height="120"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="MvS-wc-kY9"/>
@@ -237,14 +258,14 @@
                                     <action selector="sortButtonPressed:" destination="E15-18-tDq" eventType="touchUpInside" id="XHS-Po-DTe"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Sort Method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTj-mG-Nxu">
-                                <rect key="frame" x="20" y="125" width="374" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Sort Method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTj-mG-Nxu">
+                                <rect key="frame" x="20" y="213" width="374" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evj-yc-TmX">
-                                <rect key="frame" x="89" y="416" width="120" height="105"/>
+                                <rect key="frame" x="89" y="470" width="120" height="105"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="105" id="gtc-bu-6pm"/>
@@ -257,10 +278,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQ8-ro-YSN">
-                                <rect key="frame" x="89" y="529" width="248" height="51"/>
+                                <rect key="frame" x="89" y="648" width="248" height="51"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="Set Sort Method"/>
+                                <state key="normal" title="TAP TO SORT"/>
                                 <connections>
                                     <action selector="setSortMethodPressed" destination="E15-18-tDq" eventType="touchUpInside" id="4Vr-hJ-yIH"/>
                                     <segue destination="HaS-By-3BZ" kind="unwind" unwindAction="unwindWithSegue:" id="Jar-QG-wSd"/>
@@ -275,15 +296,15 @@
                             <constraint firstItem="pfj-rf-WCc" firstAttribute="leading" secondItem="m0C-63-lSe" secondAttribute="leading" constant="89" id="73q-ZD-gmH"/>
                             <constraint firstItem="kFZ-uB-Pda" firstAttribute="top" secondItem="jkH-cd-R73" secondAttribute="bottom" constant="8" id="9ag-5B-KeP"/>
                             <constraint firstItem="kFZ-uB-Pda" firstAttribute="top" secondItem="evj-yc-TmX" secondAttribute="top" id="Aw0-UH-MtL"/>
-                            <constraint firstItem="bQ8-ro-YSN" firstAttribute="top" secondItem="kFZ-uB-Pda" secondAttribute="bottom" constant="8" id="QqF-Zs-yrs"/>
-                            <constraint firstItem="m0C-63-lSe" firstAttribute="bottom" secondItem="bQ8-ro-YSN" secondAttribute="bottom" constant="228" id="Qxo-gM-2jU"/>
+                            <constraint firstItem="bQ8-ro-YSN" firstAttribute="top" secondItem="kFZ-uB-Pda" secondAttribute="bottom" constant="73" id="QqF-Zs-yrs"/>
+                            <constraint firstItem="m0C-63-lSe" firstAttribute="bottom" secondItem="bQ8-ro-YSN" secondAttribute="bottom" constant="163" id="Qxo-gM-2jU"/>
                             <constraint firstItem="kFZ-uB-Pda" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="evj-yc-TmX" secondAttribute="trailing" constant="8" symbolic="YES" id="aEm-j4-FZR"/>
                             <constraint firstItem="jkH-cd-R73" firstAttribute="leading" secondItem="pfj-rf-WCc" secondAttribute="trailing" constant="8" id="aKY-qF-yI9"/>
-                            <constraint firstItem="eTj-mG-Nxu" firstAttribute="centerX" secondItem="JXo-D9-IUN" secondAttribute="centerX" id="bAP-b2-U0C"/>
                             <constraint firstItem="evj-yc-TmX" firstAttribute="top" secondItem="pfj-rf-WCc" secondAttribute="bottom" constant="8" id="efz-gu-xVU"/>
+                            <constraint firstItem="eTj-mG-Nxu" firstAttribute="leading" secondItem="JXo-D9-IUN" secondAttribute="leadingMargin" id="j7r-wJ-c7R"/>
+                            <constraint firstItem="eTj-mG-Nxu" firstAttribute="trailing" secondItem="JXo-D9-IUN" secondAttribute="trailingMargin" id="k5B-Ns-FBl"/>
                             <constraint firstItem="jkH-cd-R73" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pfj-rf-WCc" secondAttribute="trailing" constant="8" symbolic="YES" id="kQY-65-Lbq"/>
-                            <constraint firstItem="eTj-mG-Nxu" firstAttribute="top" secondItem="m0C-63-lSe" secondAttribute="top" constant="125" id="o5t-Sa-0NH"/>
-                            <constraint firstItem="pfj-rf-WCc" firstAttribute="top" secondItem="eTj-mG-Nxu" secondAttribute="bottom" constant="117" id="ppU-6V-8eg"/>
+                            <constraint firstItem="eTj-mG-Nxu" firstAttribute="top" secondItem="m0C-63-lSe" secondAttribute="top" constant="125" id="lni-XH-Bfb"/>
                             <constraint firstItem="evj-yc-TmX" firstAttribute="leading" secondItem="m0C-63-lSe" secondAttribute="leading" constant="89" id="sCt-WX-y5F"/>
                             <constraint firstItem="kFZ-uB-Pda" firstAttribute="firstBaseline" secondItem="evj-yc-TmX" secondAttribute="baseline" id="xqS-iJ-Okf"/>
                             <constraint firstItem="m0C-63-lSe" firstAttribute="trailing" secondItem="jkH-cd-R73" secondAttribute="trailing" constant="77" id="zmq-YC-DPS"/>
@@ -415,5 +436,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="B7k-cS-GZw"/>
+        <segue reference="lOx-eD-4g1"/>
     </inferredMetricsTieBreakers>
 </document>
