@@ -24,6 +24,7 @@ class AmiiboTableViewController: UIViewController {
  //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         tableview.delegate = self
         tableview.dataSource = self
         loadAmiibos()
@@ -47,7 +48,7 @@ class AmiiboTableViewController: UIViewController {
         let indexPath = tableview.indexPathForSelectedRow else {
             fatalError("failed to prepare for segue properly")
             }
-            let amiibo = amiibos[indexPath.row]
+            let amiibo = amiibos[indexPath.section]
             amiiboDetailVC.amiibo = amiibo[indexPath.row]
         } else if segue.identifier == "tableToSort" {
             guard segue.destination is SortByViewController else {
@@ -104,4 +105,17 @@ extension AmiiboTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+}
+
+extension AmiiboTableViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        amiibos = AmiiboInfo.searchAmiibos(method: filterMethod, searchQuery: searchBar.text?.lowercased() ?? "mario", allAmiibos: amiibos)
+        
+    }
+    
 }

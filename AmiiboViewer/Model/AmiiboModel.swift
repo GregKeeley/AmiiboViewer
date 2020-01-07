@@ -29,14 +29,12 @@ struct AmiiboInfo: Codable {
                 uniqueGames.append(amiibo.gameSeries)
             }
         }
-        print(uniqueGames)
         return uniqueGames
     }
     static func sortByGame(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
         let allGames = getGameSeries(amiibos: allAmiibos)
-        let noCardAmiibos = getRidOfCards(allAmiibos: allAmiibos)
         var amiibosByGame = Array(repeating: [AmiiboElement](), count: allGames.count)
-        let sortedAmiibos = noCardAmiibos.sorted { $0.gameSeries < $1.gameSeries }
+        let sortedAmiibos = allAmiibos.sorted { $0.gameSeries < $1.gameSeries }
         var currentIndex = 0
         var currentGame = sortedAmiibos.first?.gameSeries
         if currentIndex < amiibosByGame.count {
@@ -51,7 +49,6 @@ struct AmiiboInfo: Codable {
                 }
             }
         }
-
         let filteredAmiibosByGame = amiibosByGame.filter { !$0.isEmpty }
         return filteredAmiibosByGame
     }
@@ -67,8 +64,7 @@ struct AmiiboInfo: Codable {
             return uniqueYears
         }
     static func sortByYear(allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
-        let noCardAmiibos = getRidOfCards(allAmiibos: allAmiibos)
-        let allYears = getAmiiboYears(amiibos: noCardAmiibos).sorted { $0 > $1 }
+        let allYears = getAmiiboYears(amiibos: allAmiibos).sorted { $0 > $1 }
         var amiibosByYear = Array(repeating: [AmiiboElement](), count: allYears.count)
         var currentIndex = 0
         let sortedAmiibos = allAmiibos
@@ -77,7 +73,7 @@ struct AmiiboInfo: Codable {
         var currentYear = sortedAmiibos.first?.release.na?.components(separatedBy: "-")
         for amiiboElement in allAmiibos {
                 if amiiboElement.release.na == nil {
-                    amiibosByYear[6].append(amiiboElement)
+                    amiibosByYear[(amiibosByYear.count - 1)].append(amiiboElement)
                 }
             }
         
@@ -99,16 +95,14 @@ struct AmiiboInfo: Codable {
     }
     //MARK: FilterAmiibos
     static func filterAmiibos(for method: Int, allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
+        let noCardsAmiibos = getRidOfCards(allAmiibos: allAmiibos)
         var filteredAmiibos = [[AmiiboElement]]()
-        for amiibo in allAmiibos {
-            if amiibo.type == "Card" {
-            }
-        }
+
         switch method {
         case 0:
-            filteredAmiibos = AmiiboInfo.sortByGame(allAmiibos: allAmiibos)
+            filteredAmiibos = AmiiboInfo.sortByGame(allAmiibos: noCardsAmiibos)
         case 1:
-            filteredAmiibos = AmiiboInfo.sortByYear(allAmiibos: allAmiibos)
+            filteredAmiibos = AmiiboInfo.sortByYear(allAmiibos: noCardsAmiibos)
         default:
             break
         }
@@ -118,16 +112,19 @@ struct AmiiboInfo: Codable {
     static func searchAmiibos(method: Int,searchQuery: String, allAmiibos: [[AmiiboElement]])-> [[AmiiboElement]] {
         var searchResults = [AmiiboElement]()
         var filteredResults = [[AmiiboElement]]()
-        for section in allAmiibos {
-            for amiibo in section {
-                if amiibo.name.lowercased().contains(searchQuery) {
-                    searchResults.append(amiibo)
+        if !searchQuery.isEmpty {
+            for section in allAmiibos {
+                for amiibo in section {
+                    if amiibo.name.lowercased().contains(searchQuery) {
+                        searchResults.append(amiibo)
+                    }
                 }
+                filteredResults = AmiiboInfo.filterAmiibos(for: method, allAmiibos: searchResults)
             }
-            filteredResults = AmiiboInfo.filterAmiibos(for: method, allAmiibos: searchResults)
+        } else {
+            filteredResults = allAmiibos
         }
         return filteredResults
-    
     }
 }
 // MARK: AmiiboElement / Release

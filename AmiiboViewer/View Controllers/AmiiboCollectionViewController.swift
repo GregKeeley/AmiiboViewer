@@ -43,10 +43,8 @@ class AmiiboCollectionViewController: UIViewController {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
-                    print("collectionView: \(self!.filterMethod)")
                     let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data)
                     self?.amiibos = filteredAmiibos
-                
             }
         }
     }
@@ -107,7 +105,7 @@ class AmiiboCollectionViewController: UIViewController {
 extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
 
-        print(amiibos.count)
+
        return amiibos.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
