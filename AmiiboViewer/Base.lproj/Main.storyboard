@@ -86,7 +86,7 @@
                             <barButtonItem id="qfO-gv-lUY"/>
                             <barButtonItem title="Sort By" id="D1H-IR-IJP">
                                 <connections>
-                                    <segue destination="E15-18-tDq" kind="show" identifier="tableToSort" id="lOx-eD-4g1"/>
+                                    <segue destination="E15-18-tDq" kind="presentation" identifier="tableToSort" id="lOx-eD-4g1"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
