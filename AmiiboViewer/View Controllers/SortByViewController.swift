@@ -15,6 +15,8 @@ class SortByViewController: UIViewController {
     @IBOutlet weak var seriesButton: UIButton!
     @IBOutlet weak var alphaButton: UIButton!
     @IBOutlet weak var setSortButton: UIButton!
+    @IBOutlet weak var arrowMarker1: UIButton!
+    @IBOutlet weak var arrowMarker2: UIButton!
     
      var setFilterMethod = 0
     
@@ -25,9 +27,16 @@ class SortByViewController: UIViewController {
         seriesButton.layer.cornerRadius = 8
         alphaButton.layer.cornerRadius = 8
         setSortButton.layer.cornerRadius = 8
+        setSortButton.isEnabled = false
+        arrowMarker1.isHidden = true
+        arrowMarker2.isHidden = true
+        
     }
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         setFilterMethod = sender.tag
+        setSortButton.isEnabled = true
+        arrowMarker1.isHidden = false
+        arrowMarker2.isHidden = false
         }
     @IBAction func setSortMethodPressed() {
     }

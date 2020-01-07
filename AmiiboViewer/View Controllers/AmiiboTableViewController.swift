@@ -88,7 +88,7 @@ extension AmiiboTableViewController: UITableViewDataSource {
             title = ("\(amiibos[section].first?.gameSeries ?? "ERROR") : \(amiibos[section].count)")
         case 1:
             let year = amiibos[section].first?.release.na?.components(separatedBy: "-")
-            title = ("\(year?[0] ?? "N/A") : \(amiibos[section].count)")
+            title = ("\(year?[0] ?? "N/A") : \(amiibos[section].count) Games")
         case 2:
             let series = amiibos[section].first?.amiiboSeries
             title = ("Series: \(series ?? "N/A")")

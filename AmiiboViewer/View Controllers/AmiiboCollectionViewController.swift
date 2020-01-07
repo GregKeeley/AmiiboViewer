@@ -74,7 +74,7 @@ class AmiiboCollectionViewController: UIViewController {
                 sectionHeader.sectionHeaderlabel.text = ("\(amiibos[indexPath.section].first?.gameSeries ?? "ERROR") : \(amiibos[indexPath.section].count)")
             case 1:
                 let year = amiibos[indexPath.section].first?.release.na?.components(separatedBy: "-")
-                sectionHeader.sectionHeaderlabel.text = ("\(year?[0] ?? "N/A") : \(amiibos[indexPath.section].count)")
+                sectionHeader.sectionHeaderlabel.text = ("\(year?[0] ?? "N/A"): \(amiibos[indexPath.section].count) Games")
             case 2:
                 let series = amiibos[indexPath.section].first?.amiiboSeries
                 sectionHeader.sectionHeaderlabel.text = ("Series: \(series ?? "N/A")")
@@ -117,8 +117,8 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "amiiboCollectionCell", for: indexPath) as? AmiiboCollectionViewCell
         cell!.congifureCell(for: amiibos[indexPath.section][indexPath.row])
-        
-        cell?.amiiboImageView.layer.masksToBounds = true
+        cell?.layer.cornerRadius = 8.0
+        cell?.amiiboImageView.layer.masksToBounds = false
         cell?.amiiboImageView.layer.cornerRadius = 8.0
         cell?.contentView.layer.cornerRadius = 8.0
         cell?.contentView.layer.borderWidth = 2.0
