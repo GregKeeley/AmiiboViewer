@@ -10,34 +10,51 @@ import UIKit
 
 class SortByViewController: UIViewController {
     
-    @IBOutlet weak var yearButton: UIButton!
-    @IBOutlet weak var gameButton: UIButton!
-    @IBOutlet weak var seriesButton: UIButton!
-    @IBOutlet weak var alphaButton: UIButton!
-    @IBOutlet weak var setSortButton: UIButton!
-    @IBOutlet weak var arrowMarker1: UIButton!
-    @IBOutlet weak var arrowMarker2: UIButton!
+
+
     
-     var setFilterMethod = 0
+    @IBOutlet weak var sortPicker: UIPickerView!
+    @IBOutlet weak var sortButton: UIButton!
     
+    var setFilterMethod = 0
+    var sortMethods = ["Game","Year","#Aa-Zz","Amiibo Series"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        yearButton.layer.cornerRadius = 8
-        gameButton.layer.cornerRadius = 8
-        seriesButton.layer.cornerRadius = 8
-        alphaButton.layer.cornerRadius = 8
-        setSortButton.layer.cornerRadius = 8
-        setSortButton.isEnabled = false
-        arrowMarker1.isHidden = true
-        arrowMarker2.isHidden = true
+        sortButton.layer.cornerRadius = 8
+        sortPicker.delegate = self
+        sortPicker.dataSource = self
         
     }
-    @IBAction func sortButtonPressed(_ sender: UIButton) {
-        setFilterMethod = sender.tag
-        setSortButton.isEnabled = true
-        arrowMarker1.isHidden = false
-        arrowMarker2.isHidden = false
+
+    @IBAction func sortPickerButtonPressed() {
+        var row = 0
+
+        if let aComponent = sortPicker?.selectedRow(inComponent: 0) {
+            row = aComponent
         }
-    @IBAction func setSortMethodPressed() {
+        setFilterMethod = row
+        print(setFilterMethod)
+    }
+}
+
+
+extension SortByViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return sortMethods[row]
+    }
+    
+}
+extension SortByViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        sortMethods.count
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let aComponent = sortPicker?.selectedRow(inComponent: 0) {
+            setFilterMethod = aComponent
+        }
     }
 }

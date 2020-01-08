@@ -17,12 +17,17 @@ class AmiiboDetailViewController: UIViewController {
     @IBOutlet weak var amiiboSeriesLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var viewButton: UIButton!
+    @IBOutlet weak var backgroundNameLabel: UILabel!
+    @IBOutlet weak var backgroundNameLabel2: UILabel!
     
     var amiibo: AmiiboElement?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backgroundNameLabel2.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        backgroundNameLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        backgroundNameLabel.isHidden = true
+        backgroundNameLabel.isHidden = true
         loadAmiibo()
     }
     func loadAmiibo() {
@@ -30,6 +35,8 @@ class AmiiboDetailViewController: UIViewController {
         characterNameLabel.text = amiibo?.character
         gameSeriesLabel.text = amiibo?.gameSeries
         amiiboSeriesLabel.text = amiibo?.amiiboSeries
+        backgroundNameLabel.text = amiibo?.character.uppercased()
+        backgroundNameLabel2.text = amiibo?.character.uppercased()
         releaseDateLabel.text = amiibo?.release.na?.description
         amiiboImageView.getImage(with: amiibo?.image ?? "") { [weak self] (results) in
             switch results {
@@ -53,6 +60,8 @@ class AmiiboDetailViewController: UIViewController {
             gameSeriesLabel.isHidden = true
             amiiboSeriesLabel.isHidden = true
             releaseDateLabel.isHidden = true
+           // backgroundNameLabel.isHidden = false
+           // backgroundNameLabel2.isHidden = false
         } else {
             viewButton.backgroundColor = .black
             amiiboNameLabel.isHidden = false
@@ -60,6 +69,8 @@ class AmiiboDetailViewController: UIViewController {
             gameSeriesLabel.isHidden = false
             amiiboSeriesLabel.isHidden = false
             releaseDateLabel.isHidden = false
+            //backgroundNameLabel.isHidden = true
+            //backgroundNameLabel2.isHidden = true
         }
     }
 }

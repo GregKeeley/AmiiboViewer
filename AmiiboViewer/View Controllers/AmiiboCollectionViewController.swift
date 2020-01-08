@@ -13,7 +13,6 @@ class AmiiboCollectionViewController: UIViewController {
     @IBOutlet weak var amiiboCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var noResultsLabel: UILabel!
     
     var filterMethod = 1
     
@@ -40,7 +39,6 @@ class AmiiboCollectionViewController: UIViewController {
 
 //MARK: loadAmiibos
     func loadAmiibos() {
-        noResultsLabel.isEnabled = false 
         AmiiboAPI.getAllAmiibos { [weak self] result in
             switch result {
             case .failure(let appError):
@@ -96,7 +94,7 @@ class AmiiboCollectionViewController: UIViewController {
         guard let sortByController = segue.source as? SortByViewController else {
             fatalError("Failed to unwind properly from sortByController")
         }
-        self.filterMethod = sortByController.setFilterMethod
+        filterMethod = sortByController.setFilterMethod
         loadAmiibos()
     }
 
@@ -134,9 +132,10 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
 //MARK: CollectionViewDelegate
 extension AmiiboCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: CGFloat((amiiboCollectionView.frame.size.width / 3) - 10), height: CGFloat((amiiboCollectionView.frame.size.height / 5) - 10))
+        return CGSize(width: CGFloat((amiiboCollectionView.frame.size.width / 3) - 10), height: CGFloat((amiiboCollectionView.frame.size.height / 5) - 20))
     }
 }
+
 extension AmiiboCollectionViewController: UICollectionViewDelegate {
 }
 
