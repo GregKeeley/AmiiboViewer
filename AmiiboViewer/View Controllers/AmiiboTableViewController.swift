@@ -36,7 +36,7 @@ class AmiiboTableViewController: UIViewController {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
-                let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data)
+                let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data, viewController: self!)
                 self?.amiibos = filteredAmiibos
             }
         }
@@ -113,11 +113,11 @@ extension AmiiboTableViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-        amiibos = AmiiboInfo.searchAmiibos(method: filterMethod, searchQuery: searchBar.text?.lowercased() ?? "mario", allAmiibos: amiibos)
-        
+        let searchText = searchBar.text
+        guard !(searchText!.isEmpty) else {
+            loadAmiibos()
+            return }
+        amiibos = AmiiboInfo.searchAmiibos(method: filterMethod, searchQuery: searchBar.text?.lowercased() ?? "mario", allAmiibos: amiibos, viewController: self)
     }
     
 }

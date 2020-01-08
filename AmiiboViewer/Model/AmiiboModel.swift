@@ -6,7 +6,7 @@
 //  Copyright © 2020 Gregory Keeley. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct AmiiboInfo: Codable {
     let amiibo: [AmiiboElement]
@@ -151,7 +151,10 @@ struct AmiiboInfo: Codable {
     }
     
     //MARK: FilterAmiibos
-    static func filterAmiibos(for method: Int, allAmiibos: [AmiiboElement]) -> [[AmiiboElement]] {
+    static func filterAmiibos(for method: Int, allAmiibos: [AmiiboElement], viewController: UIViewController) -> [[AmiiboElement]] {
+        if allAmiibos.isEmpty {
+            viewController.showAlert(title: "No Results", message: "")
+        }
         let noCardsAmiibos = getRidOfCards(allAmiibos: allAmiibos)
         var filteredAmiibos = [[AmiiboElement]]()
         
@@ -170,7 +173,7 @@ struct AmiiboInfo: Codable {
         
         return filteredAmiibos
     }
-    static func searchAmiibos(method: Int,searchQuery: String, allAmiibos: [[AmiiboElement]])-> [[AmiiboElement]] {
+    static func searchAmiibos(method: Int,searchQuery: String, allAmiibos: [[AmiiboElement]], viewController: UIViewController)-> [[AmiiboElement]] {
         var searchResults = [AmiiboElement]()
         var filteredResults = [[AmiiboElement]]()
         if !searchQuery.isEmpty {
@@ -180,7 +183,7 @@ struct AmiiboInfo: Codable {
                         searchResults.append(amiibo)
                     }
                 }
-                filteredResults = AmiiboInfo.filterAmiibos(for: method, allAmiibos: searchResults)
+                filteredResults = AmiiboInfo.filterAmiibos(for: method, allAmiibos: searchResults, viewController: viewController)
             }
         } else {
             filteredResults = allAmiibos

@@ -12,6 +12,8 @@ class AmiiboCollectionViewController: UIViewController {
 
     @IBOutlet weak var amiiboCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var noResultsLabel: UILabel!
     
     var filterMethod = 1
     
@@ -31,19 +33,20 @@ class AmiiboCollectionViewController: UIViewController {
         amiiboCollectionView.dataSource = self
         amiiboCollectionView.delegate = self
         loadAmiibos()
-        
+        cancelButton.isEnabled = false
         
 
     }
 
 //MARK: loadAmiibos
     func loadAmiibos() {
+        noResultsLabel.isEnabled = false 
         AmiiboAPI.getAllAmiibos { [weak self] result in
             switch result {
             case .failure(let appError):
                 print("Failed to load: \(appError)")
             case .success(let data):
-                    let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data)
+                let filteredAmiibos = AmiiboInfo.filterAmiibos(for: self?.filterMethod ?? 0, allAmiibos: data, viewController: self!)
                     self?.amiibos = filteredAmiibos
             }
         }
@@ -99,6 +102,7 @@ class AmiiboCollectionViewController: UIViewController {
 
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         searchBar.resignFirstResponder()
+        cancelButton.isEnabled = false
     }
     
 }
@@ -138,14 +142,17 @@ extension AmiiboCollectionViewController: UICollectionViewDelegate {
 
 //MARK: SearchBar Extension
 extension AmiiboCollectionViewController: UISearchBarDelegate {
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        let searchText = searchBar.text
+        guard !searchText!.isEmpty else {
+            loadAmiibos()
+            return  }
+        amiibos = AmiiboInfo.searchAmiibos(method: filterMethod, searchQuery: searchBar.text?.lowercased() ?? "mario", allAmiibos: amiibos, viewController: self)
     }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
-        amiibos = AmiiboInfo.searchAmiibos(method: filterMethod, searchQuery: searchBar.text?.lowercased() ?? "mario", allAmiibos: amiibos)
-        
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        cancelButton.isEnabled = true
     }
-    
 }
