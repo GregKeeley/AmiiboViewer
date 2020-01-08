@@ -42,7 +42,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="inf-6B-Uyi">
-                                                    <rect key="frame" x="287" y="30" width="107" height="107"/>
+                                                    <rect key="frame" x="287" y="11" width="107" height="145"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="107" id="Hm7-Oi-Tp5"/>
                                                     </constraints>
@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1490" y="114"/>
+            <point key="canvasLocation" x="1489.8550724637682" y="113.83928571428571"/>
         </scene>
         <!--Amiibo Collection View Controller-->
         <scene sceneID="sn0-y2-sTo">
@@ -359,9 +359,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fc-ay-yGV">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                             </imageView>
-                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgZ-RB-RYI">
+                            <button alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgZ-RB-RYI">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <state key="normal">
@@ -414,13 +413,17 @@
                             <constraint firstItem="VqW-pw-QJg" firstAttribute="top" secondItem="Stj-ui-qTN" secondAttribute="bottom" constant="8" id="FaY-dC-rpY"/>
                             <constraint firstItem="5fc-ay-yGV" firstAttribute="top" secondItem="GIg-ho-suD" secondAttribute="top" id="IJb-pf-7CQ"/>
                             <constraint firstItem="eri-vn-ep1" firstAttribute="top" secondItem="4od-BQ-DGp" secondAttribute="bottom" constant="8" id="Mas-MV-C2K"/>
+                            <constraint firstItem="IgZ-RB-RYI" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" id="UCk-XD-PPq"/>
+                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="IgZ-RB-RYI" secondAttribute="trailing" id="Y2o-Cn-em4"/>
                             <constraint firstAttribute="bottom" secondItem="5fc-ay-yGV" secondAttribute="bottom" id="Ydw-gI-idP"/>
                             <constraint firstItem="4od-BQ-DGp" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="aSg-BF-eoU"/>
                             <constraint firstItem="m5I-xC-jg1" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="dqj-3P-IRD"/>
+                            <constraint firstAttribute="bottom" secondItem="IgZ-RB-RYI" secondAttribute="bottom" id="ejx-Ty-Xwg"/>
                             <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="4od-BQ-DGp" secondAttribute="trailing" constant="20" id="gZE-U6-XtJ"/>
                             <constraint firstItem="m5I-xC-jg1" firstAttribute="top" secondItem="GIg-ho-suD" secondAttribute="top" constant="20" id="hNB-SK-Xwz"/>
                             <constraint firstItem="Stj-ui-qTN" firstAttribute="top" secondItem="eri-vn-ep1" secondAttribute="bottom" constant="8" id="hhS-5t-Xit"/>
                             <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="Stj-ui-qTN" secondAttribute="trailing" constant="20" id="inb-SB-NvK"/>
+                            <constraint firstItem="IgZ-RB-RYI" firstAttribute="top" secondItem="GIg-ho-suD" secondAttribute="top" id="m3u-bU-1jj"/>
                             <constraint firstItem="eri-vn-ep1" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="p1o-B6-epJ"/>
                             <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="eri-vn-ep1" secondAttribute="trailing" constant="20" id="pLD-ZJ-UBX"/>
                             <constraint firstItem="m5I-xC-jg1" firstAttribute="height" secondItem="5fc-ay-yGV" secondAttribute="height" multiplier="0.4" id="rQx-oT-SKR"/>
@@ -441,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OY6-cU-Kpw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2852" y="114"/>
+            <point key="canvasLocation" x="2851.7985611510794" y="113.5678391959799"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FkF-q1-ISi">
@@ -467,7 +470,7 @@
         <image name="arrowshape.turn.up.right" catalog="system" width="64" height="52"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="B7k-cS-GZw"/>
-        <segue reference="JZX-mG-9gg"/>
+        <segue reference="Kjx-WQ-5LV"/>
+        <segue reference="lOx-eD-4g1"/>
     </inferredMetricsTieBreakers>
 </document>

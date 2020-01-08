@@ -130,7 +130,7 @@ extension AmiiboCollectionViewController: UICollectionViewDataSource {
 //MARK: CollectionViewDelegate
 extension AmiiboCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: CGFloat((amiiboCollectionView.frame.size.width / 3) - 10), height: CGFloat(100))
+        return CGSize(width: CGFloat((amiiboCollectionView.frame.size.width / 3) - 10), height: CGFloat((amiiboCollectionView.frame.size.height / 5) - 10))
     }
 }
 extension AmiiboCollectionViewController: UICollectionViewDelegate {
