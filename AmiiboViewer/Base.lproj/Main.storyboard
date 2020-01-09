@@ -126,12 +126,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pR9-1V-Lnu">
-                                                    <rect key="frame" x="0.0" y="4" width="122" height="168"/>
+                                                    <rect key="frame" x="4" y="4" width="114" height="168"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="pR9-1V-Lnu" firstAttribute="leading" secondItem="Khy-ld-Og7" secondAttribute="leading" id="1kG-HT-kWH"/>
-                                                <constraint firstAttribute="trailing" secondItem="pR9-1V-Lnu" secondAttribute="trailing" id="Kw8-Kl-sHg"/>
+                                                <constraint firstItem="pR9-1V-Lnu" firstAttribute="leading" secondItem="Khy-ld-Og7" secondAttribute="leading" constant="4" id="1kG-HT-kWH"/>
+                                                <constraint firstAttribute="trailing" secondItem="pR9-1V-Lnu" secondAttribute="trailing" constant="4" id="Kw8-Kl-sHg"/>
                                                 <constraint firstAttribute="bottom" secondItem="pR9-1V-Lnu" secondAttribute="bottom" constant="4" id="ZED-bp-H9h"/>
                                                 <constraint firstItem="pR9-1V-Lnu" firstAttribute="top" secondItem="Khy-ld-Og7" secondAttribute="top" constant="4" id="foF-kL-iBa"/>
                                             </constraints>
@@ -275,20 +275,27 @@
             <objects>
                 <viewController id="5bo-RR-FFy" customClass="AmiiboDetailViewController" customModule="AmiiboViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9XN-Ni-mtf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AAAAAAAAAAAAAAAAAAAAAAAAA" textAlignment="justified" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xeT-Wr-cgd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <color key="textColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xeT-Wr-cgd">
+                                <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="AAAAAAAAAAAAAAAAAAAAAAAAA">
+                                        <attributes>
+                                            <color key="NSColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="34" name="DINCondensed-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fc-ay-yGV">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                             </imageView>
                             <button alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgZ-RB-RYI">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <state key="normal">
@@ -299,71 +306,164 @@
                                     <action selector="viewButtonPressed" destination="5bo-RR-FFy" eventType="touchUpInside" id="2QR-nS-IWW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4od-BQ-DGp">
-                                <rect key="frame" x="20" y="754" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGg-pl-cDa">
+                                <rect key="frame" x="20" y="746" width="48.5" height="11"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="RELEASE DATE">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="11" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Series" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eri-vn-ep1">
-                                <rect key="frame" x="20" y="783" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4od-BQ-DGp">
+                                <rect key="frame" x="20" y="649" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Character Name">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="17" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amiibo Series" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stj-ui-qTN">
-                                <rect key="frame" x="20" y="812" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eri-vn-ep1">
+                                <rect key="frame" x="20" y="685" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Game Series">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="17" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqW-pw-QJg">
-                                <rect key="frame" x="20" y="841" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stj-ui-qTN">
+                                <rect key="frame" x="20" y="721" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Amiibo Series">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="17" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqW-pw-QJg">
+                                <rect key="frame" x="20" y="757" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="NA Release Date">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="17" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kG-Td-A6F">
+                                <rect key="frame" x="20" y="710" width="51" height="11"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="AMIIBO SERIES">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="11" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsd-D9-ecR">
+                                <rect key="frame" x="20" y="674" width="45.5" height="11"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="GAME SERIES">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="11" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4e-B8-9dM">
+                                <rect key="frame" x="20" y="638" width="20" height="11"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="NAME">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="11" name="DINCondensed-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amiibo Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5I-xC-jg1">
-                                <rect key="frame" x="20" y="108" width="374" height="323"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="83"/>
+                                <rect key="frame" x="20" y="242.5" width="374" height="323"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="83"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="eri-vn-ep1" secondAttribute="trailing" constant="20" id="13w-gc-X9q"/>
+                            <constraint firstItem="4od-BQ-DGp" firstAttribute="top" secondItem="r4e-B8-9dM" secondAttribute="bottom" id="26o-4u-ME0"/>
                             <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="m5I-xC-jg1" secondAttribute="trailing" constant="20" id="2qW-cq-4vh"/>
+                            <constraint firstItem="rsd-D9-ecR" firstAttribute="leading" secondItem="eri-vn-ep1" secondAttribute="leading" id="2yE-Kv-QnB"/>
                             <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="VqW-pw-QJg" secondAttribute="trailing" constant="20" id="4Ny-wY-Con"/>
                             <constraint firstItem="5fc-ay-yGV" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" id="6Ea-9e-1FR"/>
+                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="r4e-B8-9dM" secondAttribute="trailing" symbolic="YES" id="76n-JD-f64"/>
+                            <constraint firstItem="6kG-Td-A6F" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="7JP-Bm-74b"/>
                             <constraint firstItem="VqW-pw-QJg" firstAttribute="bottom" secondItem="GIg-ho-suD" secondAttribute="bottom" id="7LC-XX-w6G"/>
+                            <constraint firstItem="Stj-ui-qTN" firstAttribute="leading" secondItem="FGg-pl-cDa" secondAttribute="leading" id="8LB-Nb-xj4"/>
+                            <constraint firstItem="r4e-B8-9dM" firstAttribute="leading" secondItem="4od-BQ-DGp" secondAttribute="leading" id="8Xv-QC-hoV"/>
+                            <constraint firstItem="rsd-D9-ecR" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="9P0-lJ-fiD"/>
+                            <constraint firstItem="m5I-xC-jg1" firstAttribute="centerY" secondItem="9XN-Ni-mtf" secondAttribute="centerY" id="CQu-jb-zIy"/>
+                            <constraint firstItem="6kG-Td-A6F" firstAttribute="leading" secondItem="Stj-ui-qTN" secondAttribute="leading" id="CWP-La-tEx"/>
+                            <constraint firstItem="Stj-ui-qTN" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="DIf-sC-IlP"/>
                             <constraint firstItem="5fc-ay-yGV" firstAttribute="trailing" secondItem="GIg-ho-suD" secondAttribute="trailing" id="DLn-zr-AJQ"/>
-                            <constraint firstItem="Stj-ui-qTN" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="FGb-ro-qTg"/>
-                            <constraint firstItem="VqW-pw-QJg" firstAttribute="top" secondItem="Stj-ui-qTN" secondAttribute="bottom" constant="8" id="FaY-dC-rpY"/>
+                            <constraint firstItem="VqW-pw-QJg" firstAttribute="top" secondItem="FGg-pl-cDa" secondAttribute="bottom" id="FaY-dC-rpY"/>
                             <constraint firstItem="5fc-ay-yGV" firstAttribute="top" secondItem="GIg-ho-suD" secondAttribute="top" id="IJb-pf-7CQ"/>
-                            <constraint firstItem="eri-vn-ep1" firstAttribute="top" secondItem="4od-BQ-DGp" secondAttribute="bottom" constant="8" id="Mas-MV-C2K"/>
+                            <constraint firstItem="eri-vn-ep1" firstAttribute="top" secondItem="rsd-D9-ecR" secondAttribute="bottom" id="J18-ti-nlo"/>
+                            <constraint firstItem="FGg-pl-cDa" firstAttribute="top" secondItem="Stj-ui-qTN" secondAttribute="bottom" constant="8" id="Jjx-Uo-I1T"/>
                             <constraint firstAttribute="bottom" secondItem="xeT-Wr-cgd" secondAttribute="bottom" id="OoZ-8Z-aCy"/>
+                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FGg-pl-cDa" secondAttribute="trailing" symbolic="YES" id="Tyg-sK-ejU"/>
                             <constraint firstItem="IgZ-RB-RYI" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" id="UCk-XD-PPq"/>
+                            <constraint firstItem="6kG-Td-A6F" firstAttribute="top" secondItem="eri-vn-ep1" secondAttribute="bottom" constant="8" id="Va5-0u-mKs"/>
                             <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="IgZ-RB-RYI" secondAttribute="trailing" id="Y2o-Cn-em4"/>
                             <constraint firstAttribute="bottom" secondItem="5fc-ay-yGV" secondAttribute="bottom" id="Ydw-gI-idP"/>
                             <constraint firstItem="4od-BQ-DGp" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="aSg-BF-eoU"/>
+                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="Stj-ui-qTN" secondAttribute="trailing" constant="20" id="cLf-Vp-LdK"/>
+                            <constraint firstItem="4od-BQ-DGp" firstAttribute="leading" secondItem="rsd-D9-ecR" secondAttribute="leading" id="cUY-Yf-Cbo"/>
+                            <constraint firstItem="VqW-pw-QJg" firstAttribute="top" secondItem="FGg-pl-cDa" secondAttribute="bottom" id="d3p-WE-hQc"/>
                             <constraint firstItem="m5I-xC-jg1" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="dqj-3P-IRD"/>
+                            <constraint firstItem="Stj-ui-qTN" firstAttribute="top" secondItem="6kG-Td-A6F" secondAttribute="bottom" id="dqx-Ge-h0b"/>
+                            <constraint firstItem="r4e-B8-9dM" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="drA-mB-Fjd"/>
                             <constraint firstAttribute="bottom" secondItem="IgZ-RB-RYI" secondAttribute="bottom" id="ejx-Ty-Xwg"/>
+                            <constraint firstItem="FGg-pl-cDa" firstAttribute="leading" secondItem="VqW-pw-QJg" secondAttribute="leading" id="gBZ-V2-s43"/>
                             <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="4od-BQ-DGp" secondAttribute="trailing" constant="20" id="gZE-U6-XtJ"/>
-                            <constraint firstItem="m5I-xC-jg1" firstAttribute="top" secondItem="GIg-ho-suD" secondAttribute="top" constant="20" id="hNB-SK-Xwz"/>
-                            <constraint firstItem="Stj-ui-qTN" firstAttribute="top" secondItem="eri-vn-ep1" secondAttribute="bottom" constant="8" id="hhS-5t-Xit"/>
-                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="Stj-ui-qTN" secondAttribute="trailing" constant="20" id="inb-SB-NvK"/>
+                            <constraint firstItem="eri-vn-ep1" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="li9-8V-sHA"/>
+                            <constraint firstItem="rsd-D9-ecR" firstAttribute="top" secondItem="4od-BQ-DGp" secondAttribute="bottom" constant="8" id="llf-vE-cJJ"/>
                             <constraint firstItem="IgZ-RB-RYI" firstAttribute="top" secondItem="GIg-ho-suD" secondAttribute="top" id="m3u-bU-1jj"/>
-                            <constraint firstItem="eri-vn-ep1" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="p1o-B6-epJ"/>
-                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" secondItem="eri-vn-ep1" secondAttribute="trailing" constant="20" id="pLD-ZJ-UBX"/>
                             <constraint firstItem="m5I-xC-jg1" firstAttribute="height" secondItem="5fc-ay-yGV" secondAttribute="height" multiplier="0.4" id="rQx-oT-SKR"/>
+                            <constraint firstItem="eri-vn-ep1" firstAttribute="leading" secondItem="6kG-Td-A6F" secondAttribute="leading" id="rrD-yP-Umq"/>
                             <constraint firstItem="xeT-Wr-cgd" firstAttribute="top" secondItem="GIg-ho-suD" secondAttribute="top" constant="-88" id="swN-n2-oNv"/>
+                            <constraint firstItem="m5I-xC-jg1" firstAttribute="leading" secondItem="r4e-B8-9dM" secondAttribute="leading" id="tjC-Fu-dJG"/>
                             <constraint firstItem="VqW-pw-QJg" firstAttribute="leading" secondItem="GIg-ho-suD" secondAttribute="leading" constant="20" id="vdd-3P-kqt"/>
                             <constraint firstItem="xeT-Wr-cgd" firstAttribute="trailing" secondItem="GIg-ho-suD" secondAttribute="trailing" id="wCI-Ee-gOf"/>
                             <constraint firstItem="xeT-Wr-cgd" firstAttribute="leading" secondItem="9XN-Ni-mtf" secondAttribute="leading" id="xGk-Jt-LHj"/>
+                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rsd-D9-ecR" secondAttribute="trailing" symbolic="YES" id="yzm-bZ-VwA"/>
+                            <constraint firstItem="GIg-ho-suD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6kG-Td-A6F" secondAttribute="trailing" symbolic="YES" id="z6I-6h-Ea3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GIg-ho-suD"/>
                     </view>
                     <navigationItem key="navigationItem" id="xzx-96-nw1"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="amiiboImageView" destination="5fc-ay-yGV" id="x2Z-VB-2ZH"/>
                         <outlet property="amiiboNameLabel" destination="m5I-xC-jg1" id="fQ0-3f-zPH"/>

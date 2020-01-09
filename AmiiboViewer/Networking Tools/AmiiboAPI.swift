@@ -29,7 +29,6 @@ struct AmiiboAPI {
                     completion(.failure(.decodingError(error)))
                 }
             }
-            
         }
     }
 }

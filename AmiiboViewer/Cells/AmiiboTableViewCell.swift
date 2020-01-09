@@ -55,15 +55,11 @@ class AmiiboTableViewCell: UITableViewCell {
         }
         return uniqueGames
     }
-    
-    
+
     static func getSectionsByGame(amiibos: [AmiiboElement]) -> [[AmiiboElement]] {
         var sortedAmiibos = [[AmiiboElement]]()
         let uniqueGames = getGameSeries(amiibos: amiibos)
-       
         var currentIndex = 0
-        // currentGame = "\(amiibos[currentIndex].gameSeries)"
-
             for game in uniqueGames {
                 for amiibo in amiibos {
                     if amiibo.gameSeries == game {
@@ -72,22 +68,10 @@ class AmiiboTableViewCell: UITableViewCell {
                         currentIndex += 1
                     }
                 }
-            
         }
         dump(sortedAmiibos)
         return sortedAmiibos
     }
-    
-    //    static func getSectionsByAlpha(amiibos: [AmiiboElement]) -> [[AmiiboElement]] {
-    //        var alphaSections = [[AmiiboElement]]()
-    //        //var uniqueSections =
-    //        for amiibo in amiibos {
-    //            let charName = [amiibo.name.components(separatedBy: "")]
-    //        }
-    //        return alphaSections
-    //    }
-    
-    
     static func getSectionsByYear(amiibos: [AmiiboElement]) -> [[AmiiboElement]] {
         var uniqueYears = [String]()
         print(amiibos.count)
@@ -97,16 +81,10 @@ class AmiiboTableViewCell: UITableViewCell {
                 uniqueYears.append(releaseYear?[0] ?? "0000")
             }
         }
-        
         uniqueYears = uniqueYears.sorted()
-        
         var amiibosByYear = Array(repeating: [AmiiboElement](), count: uniqueYears.count)
-
-    
-        
         for amiibo in amiibos {
             let amiiboReleaseYear = amiibo.release.na?.components(separatedBy: "-")
-            
             switch amiiboReleaseYear?[0] {
             case "2014":
                 amiibosByYear[1].append(amiibo)

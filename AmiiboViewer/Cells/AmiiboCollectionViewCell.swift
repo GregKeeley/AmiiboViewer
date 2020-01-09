@@ -9,11 +9,8 @@
 import UIKit
 
 class AmiiboCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var amiiboImageView: UIImageView!
-    
     func congifureCell(for amiibo: AmiiboElement) {
-        
         amiiboImageView.getImage(with: amiibo.image) { [weak self] (results) in
             switch results {
             case .failure(let appError):

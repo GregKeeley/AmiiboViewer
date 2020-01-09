@@ -9,15 +9,12 @@
 import UIKit
 
 class SortByViewController: UIViewController {
-    
-
-
-    
     @IBOutlet weak var sortPicker: UIPickerView!
     @IBOutlet weak var sortButton: UIButton!
     
     var setFilterMethod = 0
     var sortMethods = ["Game","Year","Amiibo Series","#Aa-Zz"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sortButton.layer.cornerRadius = 8
@@ -25,7 +22,6 @@ class SortByViewController: UIViewController {
         sortPicker.dataSource = self
         
     }
-
     @IBAction func sortPickerButtonPressed() {
         var row = 0
 
@@ -37,7 +33,7 @@ class SortByViewController: UIViewController {
     }
 }
 
-
+//MARK: Pickerview Extension
 extension SortByViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return sortMethods[row]

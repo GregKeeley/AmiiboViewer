@@ -28,11 +28,10 @@ class AmiiboDetailViewController: UIViewController {
         loadAmiibo()
     }
     func loadAmiibo() {
-        let bgName2 = String(repeating: amiibo?.name ?? "Amiibo", count: 50)
+        let bgName2 = String(repeating: amiibo?.name ?? "Amiibo", count: 200)
         amiiboNameLabel.text = amiibo?.name.uppercased()
         characterNameLabel.text = amiibo?.character
         gameSeriesLabel.text = amiibo?.gameSeries
-        
         amiiboSeriesLabel.text = amiibo?.amiiboSeries
         backgroundNameLabel.text = bgName2.uppercased()
         releaseDateLabel.text = amiibo?.release.na?.description
@@ -52,7 +51,6 @@ class AmiiboDetailViewController: UIViewController {
     }
     @IBAction func viewButtonPressed() {
         if viewButton.backgroundColor == .black {
-            
             viewButton.backgroundColor = .clear
                 } else {
                     viewButton.backgroundColor = .black

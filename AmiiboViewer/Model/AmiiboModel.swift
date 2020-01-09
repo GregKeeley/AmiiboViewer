@@ -10,8 +10,7 @@ import UIKit
 
 struct AmiiboInfo: Codable {
     let amiibo: [AmiiboElement]
-    
-    
+    //MARK: GetRidOfCards
     static func getRidOfCards(allAmiibos: [AmiiboElement]) -> [AmiiboElement] {
         var allAmiibosNoCards = [AmiiboElement]()
         for amiibo in allAmiibos {
@@ -43,7 +42,6 @@ struct AmiiboInfo: Codable {
                     amiibosByGame[currentIndex].append(amiiboElement)
                 } else {
                     currentIndex += 1
-                    
                     currentGame = amiiboElement.gameSeries
                     amiibosByGame[currentIndex].append(amiiboElement)
                 }
@@ -140,7 +138,6 @@ struct AmiiboInfo: Codable {
                 let amiiboSeries = amiiboElement.amiiboSeries
                 if amiiboSeries == currentSeries {
                     amiibosBySeries[currentIndex].append(amiiboElement)
-                    
                 } else {
                     currentIndex += 1
                     currentSeries = amiiboSeries
@@ -157,7 +154,6 @@ struct AmiiboInfo: Codable {
         }
         let noCardsAmiibos = getRidOfCards(allAmiibos: allAmiibos)
         var filteredAmiibos = [[AmiiboElement]]()
-        
         switch method {
         case 0:
             filteredAmiibos = AmiiboInfo.sortByGame(allAmiibos: noCardsAmiibos)
@@ -190,16 +186,6 @@ struct AmiiboInfo: Codable {
         }
         return filteredResults
     }
-    
-    //MARK: Name Repeat for Detail Background
-    static func repeatNameForBG(name: String) -> String {
-        var bgName = "\(name)"
-        if name.count < 25 {
-            
-        }
-       return bgName
-    }
-    
 }
 // MARK: AmiiboElement / Release
 struct AmiiboElement: Codable {

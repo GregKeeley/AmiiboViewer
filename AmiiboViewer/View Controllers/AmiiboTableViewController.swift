@@ -21,7 +21,7 @@ class AmiiboTableViewController: UIViewController {
             }
         }
     }
- //MARK: ViewDidLoad
+    //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -29,7 +29,7 @@ class AmiiboTableViewController: UIViewController {
         tableview.dataSource = self
         loadAmiibos()
     }
- //MARK: loadAmiibos
+    //MARK: loadAmiibos
     func loadAmiibos() {
         AmiiboAPI.getAllAmiibos { [weak self] result in
             switch result {
@@ -41,12 +41,12 @@ class AmiiboTableViewController: UIViewController {
             }
         }
     }
-  // MARK: prepareForSegue
+    // MARK: prepareForSegue / UnwindSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tableViewToDetail" {
-       guard let amiiboDetailVC = segue.destination as? AmiiboDetailViewController,
-        let indexPath = tableview.indexPathForSelectedRow else {
-            fatalError("failed to prepare for segue properly")
+            guard let amiiboDetailVC = segue.destination as? AmiiboDetailViewController,
+                let indexPath = tableview.indexPathForSelectedRow else {
+                    fatalError("failed to prepare for segue properly")
             }
             let amiibo = amiibos[indexPath.section]
             amiiboDetailVC.amiibo = amiibo[indexPath.row]
@@ -64,6 +64,7 @@ class AmiiboTableViewController: UIViewController {
         loadAmiibos()
     }
 }
+
 //MARK: Extensions
 extension AmiiboTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +84,6 @@ extension AmiiboTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title = String()
         switch filterMethod {
-            
         case 0:
             title = ("\(amiibos[section].first?.gameSeries ?? "ERROR") : \(amiibos[section].count)")
         case 1:
@@ -100,17 +100,15 @@ extension AmiiboTableViewController: UITableViewDataSource {
         }
         return title
     }
-    
 }
-
+//MARK: TableView Extension
 extension AmiiboTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return (tableView.frame.size.height / 6)
     }
 }
-
+//MARK: SearchBar Extension
 extension AmiiboTableViewController: UISearchBarDelegate {
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         let searchText = searchBar.text
@@ -119,5 +117,4 @@ extension AmiiboTableViewController: UISearchBarDelegate {
             return }
         amiibos = AmiiboInfo.searchAmiibos(method: filterMethod, searchQuery: searchBar.text?.lowercased() ?? "mario", allAmiibos: amiibos, viewController: self)
     }
-    
 }
