@@ -107,32 +107,27 @@ class AmiiboCollectionViewController: UIViewController {
 //MARK: CollectionView Extension
 extension AmiiboCollectionViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-
-
        return amiibos.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return amiibos[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "amiiboCollectionCell", for: indexPath) as? AmiiboCollectionViewCell
         cell!.congifureCell(for: amiibos[indexPath.section][indexPath.row])
-        cell?.layer.cornerRadius = 8.0
-        cell?.amiiboImageView.layer.masksToBounds = false
-        cell?.amiiboImageView.layer.cornerRadius = 8.0
-        cell?.contentView.layer.cornerRadius = 8.0
+        cell?.layer.cornerRadius = 3.0
+        cell?.amiiboImageView.layer.masksToBounds = true
         cell?.contentView.layer.borderWidth = 2.0
         return cell!
     }
-    
-    
 }
+
 //MARK: CollectionViewDelegate
 extension AmiiboCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: CGFloat((amiiboCollectionView.frame.size.width / 3) - 10), height: CGFloat((amiiboCollectionView.frame.size.height / 5) - 20))
+        return CGSize(width: CGFloat((amiiboCollectionView.frame.size.width / 3) - 8), height: CGFloat((amiiboCollectionView.frame.size.height / 5) - 12))
     }
 }
 

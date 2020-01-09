@@ -190,6 +190,16 @@ struct AmiiboInfo: Codable {
         }
         return filteredResults
     }
+    
+    //MARK: Name Repeat for Detail Background
+    static func repeatNameForBG(name: String) -> String {
+        var bgName = "\(name)"
+        if name.count < 25 {
+            
+        }
+       return bgName
+    }
+    
 }
 // MARK: AmiiboElement / Release
 struct AmiiboElement: Codable {

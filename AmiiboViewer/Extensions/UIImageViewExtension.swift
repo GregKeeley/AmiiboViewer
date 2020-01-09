@@ -10,8 +10,8 @@ import UIKit
 extension UIImageView {
     func getImage(with urlString: String,
                   completion: @escaping (Result<UIImage, AppError>) -> ()) {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .orange
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+
         activityIndicator.startAnimating()
         activityIndicator.center = center
         addSubview(activityIndicator)

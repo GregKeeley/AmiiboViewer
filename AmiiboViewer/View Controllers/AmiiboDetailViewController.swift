@@ -18,25 +18,23 @@ class AmiiboDetailViewController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var backgroundNameLabel: UILabel!
-    @IBOutlet weak var backgroundNameLabel2: UILabel!
-    
+
+    var nameForBG = ""
     var amiibo: AmiiboElement?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundNameLabel2.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        backgroundNameLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        backgroundNameLabel.isHidden = true
         backgroundNameLabel.isHidden = true
         loadAmiibo()
     }
     func loadAmiibo() {
+        let bgName2 = String(repeating: amiibo?.name ?? "Amiibo", count: 50)
         amiiboNameLabel.text = amiibo?.name.uppercased()
         characterNameLabel.text = amiibo?.character
         gameSeriesLabel.text = amiibo?.gameSeries
+        
         amiiboSeriesLabel.text = amiibo?.amiiboSeries
-        backgroundNameLabel.text = amiibo?.character.uppercased()
-        backgroundNameLabel2.text = amiibo?.character.uppercased()
+        backgroundNameLabel.text = bgName2.uppercased()
         releaseDateLabel.text = amiibo?.release.na?.description
         amiiboImageView.getImage(with: amiibo?.image ?? "") { [weak self] (results) in
             switch results {
@@ -54,23 +52,17 @@ class AmiiboDetailViewController: UIViewController {
     }
     @IBAction func viewButtonPressed() {
         if viewButton.backgroundColor == .black {
+            
             viewButton.backgroundColor = .clear
-            amiiboNameLabel.isHidden = true
-            characterNameLabel.isHidden = true
-            gameSeriesLabel.isHidden = true
-            amiiboSeriesLabel.isHidden = true
-            releaseDateLabel.isHidden = true
-           // backgroundNameLabel.isHidden = false
-           // backgroundNameLabel2.isHidden = false
-        } else {
-            viewButton.backgroundColor = .black
-            amiiboNameLabel.isHidden = false
-            characterNameLabel.isHidden = false
-            gameSeriesLabel.isHidden = false
-            amiiboSeriesLabel.isHidden = false
-            releaseDateLabel.isHidden = false
-            //backgroundNameLabel.isHidden = true
-            //backgroundNameLabel2.isHidden = true
+                } else {
+                    viewButton.backgroundColor = .black
         }
+            amiiboNameLabel.isHidden.toggle()
+            characterNameLabel.isHidden.toggle()
+            gameSeriesLabel.isHidden.toggle()
+            amiiboSeriesLabel.isHidden.toggle()
+            releaseDateLabel.isHidden.toggle()
+            backgroundNameLabel.isHidden.toggle()
+        
     }
 }

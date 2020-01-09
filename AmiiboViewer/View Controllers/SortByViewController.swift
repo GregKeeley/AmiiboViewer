@@ -17,7 +17,7 @@ class SortByViewController: UIViewController {
     @IBOutlet weak var sortButton: UIButton!
     
     var setFilterMethod = 0
-    var sortMethods = ["Game","Year","#Aa-Zz","Amiibo Series"]
+    var sortMethods = ["Game","Year","Amiibo Series","#Aa-Zz"]
     override func viewDidLoad() {
         super.viewDidLoad()
         sortButton.layer.cornerRadius = 8
