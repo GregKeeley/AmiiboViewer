@@ -7,8 +7,6 @@
 ####                         - AlphaNumeric
 
 #### Detail view of each Amiibo
-```swift
-```
 
 ![AmiiboViewer](Assets/AmiiboViewer1.png)
 
