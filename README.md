@@ -5,6 +5,8 @@
 ####                         - Release Year
 ####                         - Amiibo Series
 ####                         - AlphaNumeric
+
+#### Detail view of each Amiibo
 ```swift
 ```
 
